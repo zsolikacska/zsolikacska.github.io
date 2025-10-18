@@ -967,3 +967,59 @@ body {
         transform: translateY(-10px);
     }
 }
+
+/* MENU */
+/* Base select styling */
+#menuSelect {
+  background: linear-gradient(145deg, #111, #1a1a1a);
+  color: #00ffe0;
+  border: 2px solid #00ffe0;
+  border-radius: 8px;
+  padding: 10px 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(0,255,224,0.4), inset 0 0 10px rgba(0,255,224,0.2);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  width: 180px;
+  text-align: center;
+  text-align-last: center;
+  text-align: center;
+  -ms-text-align-last: center;  /* IE Compatibility */
+  -moz-text-align-last: center; /* Firefox */
+  width: 180px;
+}
+
+/* Add custom neon glow on hover */
+#menuSelect:hover {
+  box-shadow: 0 0 25px rgba(0,255,224,0.7), inset 0 0 15px rgba(0,255,224,0.3);
+  border-color: #00fff2;
+  transform: scale(1.03);
+}
+
+/* Inner options */
+#menuSelect option {
+  background: #0f0f0f;
+  color: #00ffe0;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Optional: Add a custom arrow UI element */
+#menuSelect::-ms-expand {
+  display: none;
+}
+
+#menuSelect::after {
+  content: "▼";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #00ffe0;
+}

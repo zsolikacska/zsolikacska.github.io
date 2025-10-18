@@ -319,3 +319,31 @@ downloadButtons.forEach(btn => {
             .catch(err => console.error("Letöltési hiba:", err));
     });
 });
+
+// --- MENU Switch ---
+  const select = document.getElementById('menuSelect');
+  const contents = document.querySelectorAll('.category-block');
+
+  // ide írjuk, melyik menühöz mely szekciók tartoznak
+  const menuMap = {
+    ClassicMenu: ['ClassicMenuGeneral', 'ClassicMenuRaids'],
+    TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids']
+  };
+
+  function showContent() {
+    // minden blokkot elrejt
+    contents.forEach(div => (div.style.display = 'none'));
+
+    // az aktuális menü kiválasztott blokkjait megjelenítjük
+    const selectedSections = menuMap[select.value];
+    if (selectedSections) {
+      selectedSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'block';
+      });
+    }
+  }
+
+  select.addEventListener('change', showContent);
+  showContent(); // alapértelmezett megjelenítés
+
