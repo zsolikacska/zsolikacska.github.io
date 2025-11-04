@@ -327,7 +327,8 @@ downloadButtons.forEach(btn => {
   // ide írjuk, melyik menühöz mely szekciók tartoznak
   const menuMap = {
     ClassicMenu: ['ClassicMenuGeneral', 'ClassicMenuRaids'],
-    TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids']
+    TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids'],
+    WotLKMenu: ['WotLKMenuGeneral', 'WotLKMenuRaids']
   };
 
   function showContent() {
