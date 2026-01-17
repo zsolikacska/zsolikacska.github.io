@@ -271,7 +271,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 
-    // --- Copy WA gombok ---
+    // --- Copy WA buttons ---
 const copyButtons = document.querySelectorAll(".btn-copy");
 
 copyButtons.forEach((btn) => {
@@ -298,7 +298,7 @@ copyButtons.forEach((btn) => {
     });
 });
 
-// --- Download gombok ---
+// --- Download buttons ---
 const downloadButtons = document.querySelectorAll(".btn-download");
 
 downloadButtons.forEach(btn => {
@@ -324,7 +324,7 @@ downloadButtons.forEach(btn => {
   const select = document.getElementById('menuSelect');
   const contents = document.querySelectorAll('.category-block');
 
-  // ide írjuk, melyik menühöz mely szekciók tartoznak
+  // MENU sections mapping
   const menuMap = {
     ClassicMenu: ['ClassicMenuGeneral', 'ClassicMenuRaids'],
     TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids'],
@@ -332,10 +332,10 @@ downloadButtons.forEach(btn => {
   };
 
   function showContent() {
-    // minden blokkot elrejt
+    // All block hide
     contents.forEach(div => (div.style.display = 'none'));
 
-    // az aktuális menü kiválasztott blokkjait megjelenítjük
+    // The selected menu show
     const selectedSections = menuMap[select.value];
     if (selectedSections) {
       selectedSections.forEach(id => {
@@ -346,5 +346,4 @@ downloadButtons.forEach(btn => {
   }
 
   select.addEventListener('change', showContent);
-  showContent(); // alapértelmezett megjelenítés
-
+  showContent(); // Default appear
