@@ -27,23 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section[id]');
     const navItems = document.querySelectorAll('.nav-link');
 
-    function highlightNavigation() {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
+function highlightNavigation() {
+  const navLinks = document.querySelectorAll(".nav-link");
 
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').slice(1) === current) {
-                item.classList.add('active');
-            }
-        });
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+
+    // 🔥 Ha nincs href (pl. Macros button), kihagyjuk
+    if (!href || !href.startsWith("#")) return;
+
+    const sectionId = href.slice(1);
+    const section = document.getElementById(sectionId);
+
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+
+    if (rect.top <= 100 && rect.bottom >= 100) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
     }
+  });
+}
+
 
     window.addEventListener('scroll', highlightNavigation);
 
@@ -347,3 +354,53 @@ downloadButtons.forEach(btn => {
 
   select.addEventListener('change', showContent);
   showContent(); // Default appear
+
+  // ===== MACROS MODAL =====
+const modal = document.getElementById("macrosModal");
+const openBtn = document.getElementById("openMacros");
+const closeBtn = document.querySelector(".close-modal");
+
+openBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// COPY MACRO BUTTONS
+document.querySelectorAll(".btn-copy-macro").forEach(button => {
+  button.addEventListener("click", async () => {
+    const file = button.getAttribute("data-file");
+    const originalText = button.textContent; // 🔥 eredeti szöveg mentése
+
+    try {
+      const response = await fetch(file);
+      const text = await response.text();
+
+      await navigator.clipboard.writeText(text);
+
+      button.textContent = "Copied! ✅";
+
+      setTimeout(() => {
+        button.textContent = originalText; // 🔥 visszaállítja az eredetire
+      }, 1500);
+
+    } catch (error) {
+      alert("Failed to copy macro.");
+    }
+  });
+});
+
+// ESC close
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modal.style.display = "none";
+  }
+});

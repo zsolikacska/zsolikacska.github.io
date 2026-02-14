@@ -1,0 +1,1 @@
+/console set ffxDeath "0"

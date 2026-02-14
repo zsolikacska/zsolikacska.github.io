@@ -1,0 +1,1 @@
+/run local i = InviteUnit or C_PartyInfo.InviteUnit i("aa");C_Timer.After(1,function() LeaveParty() end)

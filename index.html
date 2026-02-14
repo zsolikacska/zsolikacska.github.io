@@ -28,8 +28,11 @@
         </a>
         <ul class="nav-links">
           <li><a href="#fojji" class="nav-link active">Fojji</a></li>
-          <li><a href="/files/addons/RXPGuides-v4.10.1.rar" class="nav-link active">RestedXP</a></li>
-          <li><a href="/files/addons/Zygor_Release 8.1.35624.rar" class="nav-link active">Zygor</a></li>
+          <li><a href="/files/addons/RXPGuides-v4.10.1.rar" class="nav-link">RestedXP</a></li>
+          <li><a href="/files/addons/Zygor_Release 8.1.35624.rar" class="nav-link">Zygor</a></li>
+          <li>
+            <button id="openMacros" class="nav-link nav-btn">Macros</button>
+          </li>
         </ul>
         <div class="hamburger">
           <span></span>
@@ -47,7 +50,7 @@
             Fojji Collection
           </h2>
           <p class="section-subtitle">
-            World of Warcraft Vanilla / TBC 20th Anniversary Edition - Last WA's Updated: 2026-02-07
+            World of Warcraft Vanilla / TBC 20th Anniversary Edition - Last WA's Updated: 2026-02-14
           </p>
           <p class="section-info">Make sure to DELETE the old version before copying the new one!</p>
 
@@ -307,6 +310,21 @@
                 </button>
               </div>
             </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/TBC/dungeontbc.png" alt="DungeonPack1" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.0">v1.0.0</span>
+              </div>
+              <h4>Dungeon Pack 1-2 Extension</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/dungeon_pack_ext.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/dungeon_pack_ext.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
             <!--
             <div class="ui-card general">
               <div class="ui-card-header">
@@ -480,6 +498,58 @@
       </section>
     </main>
 
+    <!-- MACROS POPUP -->
+    <div id="macrosModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Macros</h3>
+        <div class="macro-buttons">
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/gettohs.txt"
+            data-tooltip="Go to instance, use macro, tadaa!"
+          >
+            GettoHS Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/rightclickbuy.txt"
+            data-tooltip="Edit/Use macro, spam right click on the NPC to buy!"
+          >
+            Buyer Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/focus.txt"
+            data-tooltip="Use macro - focus target and cast spell, and whisper the focused target!"
+          >
+            Focus Cast Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/maxdistance.txt"
+            data-tooltip="Use macro - Expand the view distance."
+          >
+            Max Distance Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/rested.txt"
+            data-tooltip="Use macro - show how many rested XP you have."
+          >
+            Rested XP Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/nodeath.txt"
+            data-tooltip="Use macro - disable death FX."
+          >
+            No Death FX Macro
+          </button>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-section">
@@ -501,7 +571,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-02-07</p>
+        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-02-14</p>
       </div>
     </footer>
     <script src="script.js"></script>

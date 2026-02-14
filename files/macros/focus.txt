@@ -1,0 +1,3 @@
+#showtooltip SPELLNAME
+/cast [@focus,exists,nodead] SPELLNAME; [@player] SPELLNAME
+/run SendChatMessage("WHISP SZOVEGE!","WHISPER",nil,UnitName("focus")

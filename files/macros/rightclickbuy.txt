@@ -1,0 +1,1 @@
+/script local f=CreateFrame("Frame"); f:RegisterEvent("MERCHANT_SHOW"); f:SetScript("OnEvent", function() BuyMerchantItem(33); CloseMerchant(); end)
