@@ -892,6 +892,10 @@ body {
   overflow-y: auto; /* ha sok szöveg van, lehessen görgetni */
 }
 
+.modal.show {
+  display: flex;
+}
+
 /* Modal doboz */
 .modal-content {
   background: #111;
