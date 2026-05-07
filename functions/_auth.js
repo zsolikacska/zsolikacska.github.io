@@ -1,20 +1,10 @@
-export async function onRequest(context) {
-  const auth = context.request.headers.get("Authorization");
+const password = "Outlaws2026";
 
-  const USER = "Outlaws";
-  const PASS = "Outlaws2026!";
+const userPass = prompt("Add meg a jelszót:");
 
-  const expected =
-    "Basic " + btoa(`${USER}:${PASS}`);
-
-  if (auth !== expected) {
-    return new Response("Auth required", {
-      status: 401,
-      headers: {
-        "WWW-Authenticate": 'Basic realm="Protected"',
-      },
-    });
-  }
-
-  return context.next();
+if (userPass === password) {
+    document.getElementById("content").style.display = "block";
+} else {
+    alert("Hibás jelszó!");
+    window.location.href = "https://zsolikacska.github.io/wrongpw.html";
 }
