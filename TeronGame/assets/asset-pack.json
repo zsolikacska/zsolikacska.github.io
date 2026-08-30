@@ -1,0 +1,289 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/background.png",
+                "type": "image",
+                "key": "background"
+            },
+            {
+                "url": "assets/sprites/balls.png",
+                "frameConfig": {
+                    "frameWidth": 17,
+                    "frameHeight": 17,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "balls"
+            },
+            {
+                "url": [
+                    "assets/sounds/environment/blackTempleAmbience.ogg",
+                    "assets/sounds/environment/blackTempleAmbience.mp3"
+                ],
+                "type": "audio",
+                "key": "blackTempleAmbience"
+            },
+            {
+                "url": [
+                    "assets/sounds/environment/blackTempleMusic.mp3"
+                ],
+                "type": "audio",
+                "key": "blackTempleMusic"
+            },
+            {
+                "url": "assets/animations/blue.png",
+                "type": "image",
+                "key": "blueFlare"
+            },
+            {
+                "url": "assets/buttons.png",
+                "frameConfig": {
+                    "frameWidth": 750,
+                    "frameHeight": 274,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "buttons"
+            },
+            {
+                "url": "assets/check.png",
+                "type": "image",
+                "key": "check"
+            },
+            {
+                "url": "assets/coffee.png",
+                "type": "image",
+                "key": "coffee"
+            },
+            {
+                "url": "assets/spells/debuff_shadowOfDeath.jpg",
+                "type": "image",
+                "key": "debuff_shadowOfDeath"
+            },
+            {
+                "url": [
+                    "assets/sounds/ghost/ghost_Death.ogg",
+                    "assets/sounds/ghost/ghost_Death.mp3"
+                ],
+                "type": "audio",
+                "key": "ghost_Death"
+            },
+            {
+                "url": [
+                    "assets/sounds/ghost/ghost_Spawn.ogg",
+                    "assets/sounds/ghost/ghost_Spawn.mp3"
+                ],
+                "type": "audio",
+                "key": "ghost_Spawn"
+            },
+            {
+                "url": "assets/ghost_transparent.png",
+                "type": "image",
+                "key": "ghost_transparent"
+            },
+            {
+                "url": [
+                    "assets/sounds/environment/horsemanLaugh.ogg",
+                    "assets/sounds/environment/horsemanLaugh.mp3"
+                ],
+                "type": "audio",
+                "key": "horsemanLaugh"
+            },
+            {
+                "url": [
+                    "assets/sounds/environment/orcKidLaugh.ogg",
+                    "assets/sounds/environment/orcKidLaugh.mp3"
+                ],
+                "type": "audio",
+                "key": "orcKidLaugh"
+            },
+            {
+                "url": "assets/soundOff.png",
+                "type": "image",
+                "key": "soundOff"
+            },
+            {
+                "url": "assets/soundOn.png",
+                "type": "image",
+                "key": "soundOn"
+            },
+            {
+                "url": "assets/spells/spell_spiritChains.jpg",
+                "type": "image",
+                "key": "spell_spiritChains"
+            },
+            {
+                "url": "assets/spells/spell_spiritLance.jpg",
+                "type": "image",
+                "key": "spell_spiritLance"
+            },
+            {
+                "url": "assets/spells/spell_spiritShield.jpg",
+                "type": "image",
+                "key": "spell_spiritShield"
+            },
+            {
+                "url": "assets/spells/spell_spiritStrike.jpg",
+                "type": "image",
+                "key": "spell_spiritStrike"
+            },
+            {
+                "url": "assets/spells/spell_spiritVolley.jpg",
+                "type": "image",
+                "key": "spell_spiritVolley"
+            },
+            {
+                "url": "assets/spellFrame.png",
+                "type": "image",
+                "key": "spellFrame"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritChains_Cast.ogg",
+                    "assets/sounds/spells/spiritChains_Cast.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritChains_Cast"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritChains_Impact.ogg",
+                    "assets/sounds/spells/spiritChains_Impact.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritChains_Impact"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritLance_Cast.ogg",
+                    "assets/sounds/spells/spiritLance_Cast.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritLance_Cast"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritLance_Impact.ogg",
+                    "assets/sounds/spells/spiritLance_Impact.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritLance_Impact"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritStrike_Cast.ogg",
+                    "assets/sounds/spells/spiritStrike_Cast.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritStrike_Cast"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritStrike_Impact.ogg",
+                    "assets/sounds/spells/spiritStrike_Impact.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritStrike_Impact"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritVolley_Cast.ogg",
+                    "assets/sounds/spells/spiritVolley_Cast.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritVolley_Cast"
+            },
+            {
+                "url": [
+                    "assets/sounds/spells/spiritVolley_Impact.ogg",
+                    "assets/sounds/spells/spiritVolley_Impact.mp3"
+                ],
+                "type": "audio",
+                "key": "spiritVolley_Impact"
+            },
+            {
+                "url": "assets/targetFrame.png",
+                "type": "image",
+                "key": "targetFrame"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_Aggro.ogg",
+                    "assets/sounds/teron/teron_Aggro.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_Aggro"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_Death.ogg",
+                    "assets/sounds/teron/teron_Death.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_Death"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_DeathAndDecay.ogg",
+                    "assets/sounds/teron/teron_DeathAndDecay.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_DeathAndDecay"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_deathCoil.ogg",
+                    "assets/sounds/teron/teron_deathCoil.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_deathCoil"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_Enrage.ogg",
+                    "assets/sounds/teron/teron_Enrage.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_Enrage"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_Intro.ogg",
+                    "assets/sounds/teron/teron_Intro.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_Intro"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_Special1.ogg",
+                    "assets/sounds/teron/teron_Special1.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_Special1"
+            },
+            {
+                "url": [
+                    "assets/sounds/teron/teron_Special2.ogg",
+                    "assets/sounds/teron/teron_Special2.mp3"
+                ],
+                "type": "audio",
+                "key": "teron_Special2"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
