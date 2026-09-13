@@ -278,7 +278,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 
-    // --- Copy WA buttons ---
+// --- Copy WA buttons ---
 const copyButtons = document.querySelectorAll(".btn-copy");
 
 copyButtons.forEach((btn) => {
@@ -305,6 +305,7 @@ copyButtons.forEach((btn) => {
     });
 });
 
+
 // --- Download buttons ---
 const downloadButtons = document.querySelectorAll(".btn-download");
 
@@ -327,80 +328,109 @@ downloadButtons.forEach(btn => {
     });
 });
 
-// --- MENU Switch ---
-  const select = document.getElementById('menuSelect');
-  const contents = document.querySelectorAll('.category-block');
 
-  // MENU sections mapping
-  const menuMap = {
+// --- VERSION MENU SWITCH ---
+const menuButtons = document.querySelectorAll('.content-menu-item');
+const contents = document.querySelectorAll('.category-block');
+const emptyMenuMessage = document.getElementById('emptyMenuMessage');
+
+// Each tab points to the content blocks that belong to that version.
+const menuMap = {
     ClassicMenu: ['ClassicMenuGeneral', 'ClassicMenuRaids'],
     TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids'],
-    WotLKMenu: ['WotLKMenuGeneral', 'WotLKMenuRaids']
-  };
+    WotLKMenu: [],
+    ForeverMenu: ['ForeverMenuGeneral', 'ForeverMenuRaids']
+};
 
-  function showContent() {
-    // All block hide
-    contents.forEach(div => (div.style.display = 'none'));
+function showContent(menuId) {
+    // Hide every version's content.
+    contents.forEach(div => {
+        div.style.display = 'none';
+    });
 
-    // The selected menu show
-    const selectedSections = menuMap[select.value];
-    if (selectedSections) {
-      selectedSections.forEach(id => {
+    // Update active tab state.
+    menuButtons.forEach(button => {
+        const active = button.dataset.menu === menuId;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    // Show the selected version.
+    const selectedSections = menuMap[menuId] || [];
+    let hasContent = false;
+
+    selectedSections.forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.style.display = 'block';
-      });
+        if (el) {
+            el.style.display = 'block';
+            hasContent = true;
+        }
+    });
+
+    // WotLK/Forever can be shown as tabs even before their sections exist.
+    if (emptyMenuMessage) {
+        emptyMenuMessage.hidden = hasContent;
     }
-  }
+}
 
-  select.addEventListener('change', showContent);
-  showContent(); // Default appear
+menuButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        showContent(button.dataset.menu);
+    });
+});
 
-  // ===== MACROS MODAL =====
+// Classic is the default tab.
+showContent('ClassicMenu');
+
+
+// ===== MACROS MODAL =====
 const modal = document.getElementById("macrosModal");
 const openBtn = document.getElementById("openMacros");
 const closeBtn = document.querySelector(".close-modal");
 
 openBtn.addEventListener("click", () => {
-  modal.classList.add("show");
+    modal.classList.add("show");
 });
 
 closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
+    modal.classList.remove("show");
 });
 
 window.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("show");
-  }
+    if (e.target === modal) {
+        modal.classList.remove("show");
+    }
 });
+
 
 // COPY MACRO BUTTONS
 document.querySelectorAll(".btn-copy-macro").forEach(button => {
-  button.addEventListener("click", async () => {
-    const file = button.getAttribute("data-file");
-    const originalText = button.textContent; // 🔥 eredeti szöveg mentése
+    button.addEventListener("click", async () => {
+        const file = button.getAttribute("data-file");
+        const originalText = button.textContent;
 
-    try {
-      const response = await fetch(file);
-      const text = await response.text();
+        try {
+            const response = await fetch(file);
+            const text = await response.text();
 
-      await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(text);
 
-      button.textContent = "Copied! ✅";
+            button.textContent = "Copied! ✅";
 
-      setTimeout(() => {
-        button.textContent = originalText; // 🔥 visszaállítja az eredetire
-      }, 1500);
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 1500);
 
-    } catch (error) {
-      alert("Failed to copy macro.");
-    }
-  });
+        } catch (error) {
+            alert("Failed to copy macro.");
+        }
+    });
 });
+
 
 // ESC close
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    modal.style.display = "none";
-  }
+    if (e.key === "Escape") {
+        modal.style.display = "none";
+    }
 });

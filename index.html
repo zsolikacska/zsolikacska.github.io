@@ -50,16 +50,36 @@
             Fojji Collection
           </h2>
           <p class="section-subtitle">
-            World of Warcraft Vanilla / TBC 20th Anniversary Edition - Last WA's Updated: 2026-08-26
+            World of Warcraft Vanilla / TBC 20th Anniversary Edition & Forever - Last WA's Updated: 2026-08-26
           </p>
           <p class="section-info">Make sure to DELETE the old version before copying the new one!</p>
 
           <!-- MENU -->
-          <select id="menuSelect">
-            <option value="ClassicMenu">Classic</option>
-            <option value="TBCMenu">TBC</option>
-            <!-- <option value="WotLKMenu">WotLK</option> -->
-          </select>
+          <div id="menuSelect" class="content-menu" role="tablist" aria-label="WoW versions">
+            <button
+              type="button"
+              class="content-menu-item active"
+              data-menu="ClassicMenu"
+              role="tab"
+              aria-selected="true"
+            >
+              Classic
+            </button>
+            <button type="button" class="content-menu-item" data-menu="TBCMenu" role="tab" aria-selected="false">
+              TBC
+            </button>
+            <button type="button" class="content-menu-item" data-menu="WotLKMenu" role="tab" aria-selected="false">
+              WotLK
+            </button>
+            <button type="button" class="content-menu-item" data-menu="ForeverMenu" role="tab" aria-selected="false">
+              Forever
+            </button>
+          </div>
+
+          <div id="emptyMenuMessage" class="menu-empty-message" hidden>
+            <i class="fas fa-info-circle"></i>
+            <span>Ehhez a verzióhoz jelenleg nincs feltöltött adat.</span>
+          </div>
         </div>
 
         <!-- General Tools -->
@@ -537,7 +557,7 @@
             <div class="ui-card raid">
               <div class="ui-card-header">
                 <img src="icons/TBC/blacktemple.png" alt="Black Temple" width="48" height="48" />
-                <span class="version-new">New</span>
+                <!--<span class="version-new">New</span>--->
                 <span class="version" title="Older version: 1.0.0">v1.1.0</span>
               </div>
               <h4>Black Temple part 1</h4>
@@ -554,7 +574,7 @@
             <div class="ui-card raid">
               <div class="ui-card-header">
                 <img src="icons/TBC/blacktemple.png" alt="Black Temple" width="48" height="48" />
-                <span class="version-new">New</span>
+                <!--<span class="version-new">New</span>--->
                 <span class="version" title="Older version: 1.0.0">v1.1.0</span>
               </div>
               <h4>Black Temple part 2</h4>
@@ -571,7 +591,7 @@
             <div class="ui-card raid">
               <div class="ui-card-header">
                 <img src="icons/TBC/hyjal.png" alt="Hyjal" width="48" height="48" />
-                <span class="version-new">New</span>
+                <!--<span class="version-new">New</span>--->
                 <span class="version" title="Older version: 1.0.0">v1.1.1</span>
               </div>
               <h4>Hyjal</h4>
@@ -588,7 +608,7 @@
             <div class="ui-card raid">
               <div class="ui-card-header">
                 <img src="icons/TBC/hyjal.png" alt="BT & Hyjal" width="48" height="48" />
-                <span class="version-new">New</span>
+                <!--<span class="version-new">New</span>-->
                 <span class="version" title="Older version: 1.0.0">v1.1.0</span>
               </div>
               <h4>BT & Hyjal Raid Frames</h4>
@@ -761,7 +781,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-08-26</p>
+        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-09-13</p>
       </div>
     </footer>
     <script src="script.js"></script>
