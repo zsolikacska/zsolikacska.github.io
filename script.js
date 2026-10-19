@@ -329,36 +329,196 @@ downloadButtons.forEach(btn => {
 });
 
 
-// --- VERSION MENU SWITCH ---
+// --- VERSION MENU SWITCH + encrypted Forever tab ---
 const menuButtons = document.querySelectorAll('.content-menu-item');
 const contents = document.querySelectorAll('.category-block');
 const emptyMenuMessage = document.getElementById('emptyMenuMessage');
+const foreverLockPanel = document.getElementById('foreverLockPanel');
+const foreverContentMount = document.getElementById('foreverContentMount');
+const foreverUnlockForm = document.getElementById('foreverUnlockForm');
+const foreverPasswordInput = document.getElementById('foreverPassword');
+const foreverUnlockButton = document.getElementById('foreverUnlockButton');
+const foreverUnlockMessage = document.getElementById('foreverUnlockMessage');
+let foreverUnlocked = false;
 
-// Each tab points to the content blocks that belong to that version.
+// Forever markup is intentionally absent from index.html. It is stored only as authenticated ciphertext.
 const menuMap = {
     ClassicMenu: ['ClassicMenuGeneral', 'ClassicMenuRaids'],
     TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids'],
-    WotLKMenu: [],
-    ForeverMenu: ['ForeverMenuGeneral', 'ForeverMenuRaids']
+    WotLKMenu: []
 };
 
-function showContent(menuId) {
-    // Hide every version's content.
-    contents.forEach(div => {
-        div.style.display = 'none';
+function setForeverMessage(message, type = 'error') {
+    if (!foreverUnlockMessage) return;
+    foreverUnlockMessage.textContent = message;
+    foreverUnlockMessage.classList.toggle('success', type === 'success');
+}
+
+function clearForeverContent() {
+    foreverUnlocked = false;
+    if (foreverContentMount) {
+        foreverContentMount.replaceChildren();
+        foreverContentMount.hidden = true;
+    }
+    if (foreverLockPanel) foreverLockPanel.hidden = false;
+    if (foreverPasswordInput) foreverPasswordInput.value = '';
+    setForeverMessage('');
+}
+
+function base64ToBytes(value) {
+    const binary = atob(value);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
+}
+
+async function decryptForeverHtml(password, payload) {
+    if (!window.crypto || !window.crypto.subtle) {
+        throw new Error('A böngésző nem támogatja a szükséges Web Crypto funkciót. Próbáld HTTPS-en, friss böngészővel.');
+    }
+    if (!payload || payload.format !== 'forever-encrypted-v1' || payload.algorithm !== 'AES-GCM-256' || payload.kdf !== 'PBKDF2-SHA-256') {
+        throw new Error('A titkosított fájl formátuma nem megfelelő.');
+    }
+    const iterations = Number(payload.iterations);
+    if (!Number.isInteger(iterations) || iterations < 100000 || iterations > 2000000) {
+        throw new Error('A titkosított fájl PBKDF2 beállítása érvénytelen.');
+    }
+
+    const encoder = new TextEncoder();
+    const salt = base64ToBytes(payload.salt);
+    const iv = base64ToBytes(payload.iv);
+    const ciphertext = base64ToBytes(payload.ciphertext);
+    if (salt.length < 16 || iv.length !== 12 || ciphertext.length < 16) {
+        throw new Error('A titkosított fájl hiányos vagy sérült.');
+    }
+
+    const material = await crypto.subtle.importKey(
+        'raw', encoder.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']
+    );
+    const key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
+        material,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['decrypt']
+    );
+    const plaintext = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext);
+    return new TextDecoder('utf-8', { fatal: true }).decode(plaintext);
+}
+
+function enableForeverFileButtons() {
+    // These handlers are also needed for elements created dynamically after successful decryption.
+    foreverContentMount.querySelectorAll('.btn-copy').forEach(button => {
+        button.addEventListener('click', async event => {
+            event.preventDefault();
+            const fileUrl = button.dataset.file;
+            try {
+                const response = await fetch(fileUrl);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const text = await response.text();
+                await navigator.clipboard.writeText(text);
+                button.innerHTML = 'Copied! ✅';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fa-solid fa-copy"></i> Copy WA';
+                }, 1500);
+            } catch (error) {
+                console.error('Forever Copy WA error:', error);
+                alert('Nem sikerült a fájl tartalmát másolni. Ellenőrizd a fájlt és a böngésző vágólapengedélyét.');
+            }
+        });
     });
 
-    // Update active tab state.
+    foreverContentMount.querySelectorAll('.btn-download').forEach(button => {
+        button.addEventListener('click', async event => {
+            event.preventDefault();
+            const fileUrl = button.getAttribute('href');
+            try {
+                const response = await fetch(fileUrl);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const blob = await response.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                const anchor = document.createElement('a');
+                anchor.href = objectUrl;
+                anchor.download = decodeURIComponent(new URL(fileUrl, document.baseURI).pathname.split('/').pop()) || 'download';
+                document.body.appendChild(anchor);
+                anchor.click();
+                anchor.remove();
+                setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+            } catch (error) {
+                console.error('Forever download error:', error);
+                alert('Nem sikerült letölteni a fájlt. Ellenőrizd a kapcsolatot és a fájl elérési útját.');
+            }
+        });
+    });
+}
+
+async function unlockForever() {
+    const password = foreverPasswordInput.value;
+    if (!password) {
+        setForeverMessage('Add meg a jelszót.');
+        return;
+    }
+
+    foreverUnlockButton.disabled = true;
+    foreverUnlockButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Visszafejtés…';
+    setForeverMessage('');
+    try {
+        const response = await fetch(new URL('forever.enc.json', document.baseURI).toString(), { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(response.status === 404
+                ? 'Nem található a forever.enc.json. Töltsd fel a GitHub repository gyökérkönyvtárába.'
+                : 'Nem sikerült betölteni a titkosított fájlt (HTTP ' + response.status + ').');
+        }
+        const payload = await response.json();
+        const decryptedHtml = await decryptForeverHtml(password, payload);
+        if (!decryptedHtml.includes('ForeverMenuGeneral') || !decryptedHtml.includes('ForeverMenuRaids')) {
+            throw new Error('A visszafejtett tartalom nem a várt Forever oldal. Ellenőrizd, hogy a megfelelő fájlt töltötted-e fel.');
+        }
+
+        foreverContentMount.innerHTML = decryptedHtml;
+        enableForeverFileButtons();
+        foreverUnlocked = true;
+        foreverLockPanel.hidden = true;
+        foreverContentMount.hidden = false;
+        setForeverMessage('Sikeres feloldás.', 'success');
+        // Remove the password from the field after use.
+        foreverPasswordInput.value = '';
+    } catch (error) {
+        console.error('Forever decryption failed:', error);
+        const likelyWrongPassword = error && (error.name === 'OperationError' || error.name === 'DataError');
+        setForeverMessage(likelyWrongPassword ? 'Hibás jelszó, vagy sérült titkosított fájl.' : (error.message || 'A Forever tartalom nem nyitható meg.'));
+    } finally {
+        foreverUnlockButton.disabled = false;
+        foreverUnlockButton.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás';
+    }
+}
+
+function showContent(menuId) {
+    // Hide the static version blocks.
+    contents.forEach(div => { div.style.display = 'none'; });
+
+    // Switching away from Forever removes the decrypted fragment from the DOM.
+    if (menuId !== 'ForeverMenu') clearForeverContent();
+
     menuButtons.forEach(button => {
         const active = button.dataset.menu === menuId;
         button.classList.toggle('active', active);
         button.setAttribute('aria-selected', active ? 'true' : 'false');
     });
 
-    // Show the selected version.
+    if (menuId === 'ForeverMenu') {
+        if (emptyMenuMessage) emptyMenuMessage.hidden = true;
+        if (foreverContentMount) foreverContentMount.hidden = !foreverUnlocked;
+        if (foreverLockPanel) foreverLockPanel.hidden = foreverUnlocked;
+        if (!foreverUnlocked && foreverPasswordInput) setTimeout(() => foreverPasswordInput.focus(), 0);
+        return;
+    }
+
+    if (foreverLockPanel) foreverLockPanel.hidden = true;
+    if (foreverContentMount) foreverContentMount.hidden = true;
+
     const selectedSections = menuMap[menuId] || [];
     let hasContent = false;
-
     selectedSections.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
@@ -366,21 +526,22 @@ function showContent(menuId) {
             hasContent = true;
         }
     });
-
-    // WotLK/Forever can be shown as tabs even before their sections exist.
-    if (emptyMenuMessage) {
-        emptyMenuMessage.hidden = hasContent;
-    }
+    if (emptyMenuMessage) emptyMenuMessage.hidden = hasContent;
 }
 
 menuButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        showContent(button.dataset.menu);
-    });
+    button.addEventListener('click', () => showContent(button.dataset.menu));
 });
 
-// Classic is the default tab.
-showContent('ClassicMenu');
+if (foreverUnlockForm) {
+    foreverUnlockForm.addEventListener('submit', event => {
+        event.preventDefault();
+        unlockForever();
+    });
+}
+
+// Keep the site's existing startup behaviour: Forever is the selected tab, but content stays encrypted until unlocked.
+showContent('ForeverMenu');
 
 
 // ===== MACROS MODAL =====

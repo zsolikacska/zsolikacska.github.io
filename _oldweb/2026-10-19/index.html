@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wago Gaming Hub</title>
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body>
+    <div class="background-animation">
+      <div class="floating-particles"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <header class="header">
+      <nav class="navbar">
+        <a href="">
+          <div class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>Wago <span class="accent">Gaming</span></span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#fojji" class="nav-link active">Fojji</a></li>
+          <li><a href="/files/addons/RXPGuides-v4.10.1.rar" class="nav-link">RestedXP</a></li>
+          <li><a href="/files/addons/Zygor_Release 8.1.35624.rar" class="nav-link">Zygor</a></li>
+          <li>
+            <button id="openMacros" class="nav-link nav-btn">Macros</button>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <section id="fojji" class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-icon">🎮</span>
+            Fojji Collection
+          </h2>
+          <p class="section-subtitle">
+            World of Warcraft Vanilla / TBC 20th Anniversary Edition & Forever - Last WA's Updated: 2026-11-06
+          </p>
+          <p class="section-info">Make sure to DELETE the old version before copying the new one!</p>
+
+          <!-- MENU -->
+          <div id="menuSelect" class="content-menu" role="tablist" aria-label="WoW versions">
+            <button type="button" class="content-menu-item" data-menu="ClassicMenu" role="tab" aria-selected="false">
+              Classic
+            </button>
+            <button type="button" class="content-menu-item" data-menu="TBCMenu" role="tab" aria-selected="false">
+              TBC
+            </button>
+            <!--  <button type="button" class="content-menu-item" data-menu="WotLKMenu" role="tab" aria-selected="false">
+              WotLK
+            </button>-->
+            <button
+              type="button"
+              class="content-menu-item active"
+              data-menu="ForeverMenu"
+              role="tab"
+              aria-selected="true"
+            >
+              Forever
+            </button>
+          </div>
+
+          <div id="emptyMenuMessage" class="menu-empty-message" hidden>
+            <i class="fas fa-info-circle"></i>
+            <span>Ehhez a verzióhoz jelenleg nincs feltöltött adat.</span>
+          </div>
+        </div>
+
+        <!-- General Tools -->
+        <div id="ClassicMenuGeneral" class="category-block">
+          <h3 class="category-title">
+            <i class="fas fa-cogs"></i>
+            General Tools Classic
+          </h3>
+          <div class="ui-grid">
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/curseforge.png" alt="FojjiCore" width="48" height="48" />
+                <span class="version">v1.15.7</span>
+              </div>
+              <h4>Fojji Core addon</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/fojjicore.zip" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://www.curseforge.com/wow/addons/fojjicore" class="btn-view" target="_blank">
+                  <i class="fa-solid fa-copy"></i> CurseForge
+                </a>
+              </div>
+            </div>
+
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/cog.ico" alt="Essentials" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Essentials</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/essentials.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/essentials.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/anchor.ico" alt="Anchor" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Raid Pack Anchor</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/raid-pack-anchor.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/raid-pack-anchor.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/consu.ico" alt="Consume" width="48" height="48" />
+                <!-- <span class="version-new">new ver.</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.8</span>
+              </div>
+              <h4>Consume Bar</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/consume-bar.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/consume-bar.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/enemynameplate.png" alt="enemynameplate" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Enemy Nameplate</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/enemynameplate.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/enemynameplate.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/classicautomarker.png" alt="classicautomarker.txt" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Classic Auto Marker</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/classicautomarker.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/classicautomarker.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Raid Packs -->
+        <div id="ClassicMenuRaids" class="category-block">
+          <h3 class="category-title">
+            <i class="fas fa-dungeon"></i>
+            Raid Packs Classic
+          </h3>
+
+          <div class="ui-grid">
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/classic/naxx.svg" alt="Naxxramas" width="48" height="48" />
+                <!-- <span class="version-new">new ver.</span> -->
+                <span class="version" title="Older version: 1.0.1">v1.0.15</span>
+              </div>
+              <h4>Naxxramas</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/naxxramas.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/naxxramas.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/classic/aq.png" alt="AQ" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.6">v1.0.7</span>
+              </div>
+              <h4>Temple of Ahn'Qiraj</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/aq40.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/aq40.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/classic/zulgurub.png" alt="ZG" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.2">v1.0.4</span>
+              </div>
+              <h4>Zul'Gurub</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/zul-gurub.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/zul-gurub.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/classic/bwl.png" alt="BWL" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.5">v1.0.6</span>
+              </div>
+              <h4>Blackwing Lair</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/bwl.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/bwl.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/classic/mc.png" alt="MC" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.0">v1.0.3</span>
+              </div>
+              <h4>Molten Core</h4>
+              <div class="ui-card-footer">
+                <a href="files/classic/molten-core.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/classic/molten-core.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- General Tools TBC-->
+        <div id="TBCMenuGeneral" class="category-block">
+          <h3 class="category-title">
+            <i class="fas fa-cogs"></i>
+            General Tools TBC
+          </h3>
+          <div class="ui-grid">
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/curseforge.png" alt="FojjiCore" width="48" height="48" />
+                <span class="version">v1.15.7</span>
+              </div>
+              <h4>Fojji Core addon</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/fojjicore.zip" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://www.curseforge.com/wow/addons/fojjicore" class="btn-view" target="_blank">
+                  <i class="fa-solid fa-copy"></i> CurseForge
+                </a>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/TBC/Teron.png" alt="TeronGame" width="48" height="48" />
+                <span class="version">v1.0.0</span>
+              </div>
+              <h4>TeronGame</h4>
+              <div class="ui-card-footer">
+                <a href="https://zsolikacska.github.io/TeronGame/" class="btn-view" target="_blank">
+                  <i class="fa-solid fa-copy"></i> LINK
+                </a>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/TBC/dungeontbc.png" alt="DungeonPack1" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.11">v1.0.12</span>
+              </div>
+              <h4>Dungeon Pack 1</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/dungeon_pack_1.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/dungeon_pack_1.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/TBC/dungeontbc.png" alt="DungeonPack1" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.6">v1.0.7</span>
+              </div>
+              <h4>Dungeon Pack 2</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/dungeon_pack_2.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/dungeon_pack_2.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/TBC/dungeontbc.png" alt="DungeonPack1" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.1">v1.0.2</span>
+              </div>
+              <h4>Dungeon Packs API</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/dungeon_pack_ext.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/dungeon_pack_ext.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <!--
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/cog.ico" alt="Essentials" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Essentials</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/essentials.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/essentials.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/anchor.ico" alt="Anchor" width="48" height="48" />
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Raid Pack Anchor</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/raid-pack-anchor.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/raid-pack-anchor.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/consu.ico" alt="Consume" width="48" height="48" />
+                <span class="version-new">new ver.</span>
+                <span class="version" title="Older version: 1.0.0">v1.0.8</span>
+              </div>
+              <h4>Consume Bar</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/consume-bar.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/consume-bar.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/enemynameplate.png" alt="enemynameplate" width="48" height="48" />
+                <span class="version-new">New</span>
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Enemy Nameplate</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/enemynameplate.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/enemynameplate.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>  -->
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/classicautomarker.png" alt="tbcautomarker" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.2</span>
+              </div>
+              <h4>TBC Auto Marker</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/auto_marker_tbc.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/auto_marker_tbc.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/buff_tracker.png" alt="tbcbuff_tracker" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.0</span>
+              </div>
+              <h4>Buff tracker</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/buff_tracker.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/buff_tracker.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/debuff_tracker.png" alt="tbcbuff_tracker" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.2</span>
+              </div>
+              <h4>Debuff tracker</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/debuff_tracker.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/debuff_tracker.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/gear_checker.png" alt="tbcgear_checker" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.0</span>
+              </div>
+              <h4>Gear checker</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/gear_checker.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/gear_checker.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img
+                  src="icons/general/item_and_trinket_tracker.png"
+                  alt="tbcitem_and_trinket_tracker"
+                  width="48"
+                  height="48"
+                />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.6">v1.0.7</span>
+              </div>
+              <h4>Item & trinket tracker</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/item_and_trinket_tracker.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/item_and_trinket_tracker.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/town_consume_helper.png" alt="tbctown_consume_helper" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.4</span>
+              </div>
+              <h4>Town consume helper</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/town_consume_helper.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/town_consume_helper.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/consumable2_re.png" alt="tbc_consumable" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.4</span>
+              </div>
+              <h4>Consumables</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/consumable.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/consumable.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Raid Packs TBC -->
+        <div id="TBCMenuRaids" class="category-block">
+          <h3 class="category-title">
+            <i class="fas fa-dungeon"></i>
+            Raid Packs TBC
+          </h3>
+
+          <div class="ui-grid">
+              <div class="ui-card raid">
+               <div class="ui-card-header">
+                <img src="icons/TBC/swp.png" alt="SWP" width="48" height="48" />
+               <!-- <span class="version-new">new ver.</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.0</span>
+              </div>
+              <h4>SWP</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/swp.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/swp.txt"><i class="fa-solid fa-copy"></i> Copy WA</button>
+              </div>
+            </div>
+            
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/blacktemple.png" alt="Black Temple" width="48" height="48" />
+                <!--<span class="version-new">New</span>--->
+                <span class="version" title="Older version: 1.0.0">v1.1.0</span>
+              </div>
+              <h4>Black Temple part 1</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/blacktemple_p1.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/blacktemple_p1.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/blacktemple.png" alt="Black Temple" width="48" height="48" />
+                <!--<span class="version-new">New</span>--->
+                <span class="version" title="Older version: 1.0.0">v1.1.0</span>
+              </div>
+              <h4>Black Temple part 2</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/blacktemple_p2.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/blacktemple_p2.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/hyjal.png" alt="Hyjal" width="48" height="48" />
+                <!--<span class="version-new">New</span>--->
+                <span class="version" title="Older version: 1.0.0">v1.1.1</span>
+              </div>
+              <h4>Hyjal</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/hyjal.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/hyjal.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/hyjal.png" alt="BT & Hyjal" width="48" height="48" />
+                <!--<span class="version-new">New</span>-->
+                <span class="version" title="Older version: 1.0.0">v1.1.0</span>
+              </div>
+              <h4>BT & Hyjal Raid Frames</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/bt_hyjal_raid_frames.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/bt_hyjal_raid_frames.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/ssc.png" alt="SSCTK" width="48" height="48" />
+                <!--  <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 2.0.0">v2.0.2</span>
+              </div>
+              <h4>SSC & TK</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/ssctk.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/ssctk.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/ssc.png" alt="SSCTK" width="48" height="48" />
+                <!--  <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v2.0.0</span>
+              </div>
+              <h4>SSC & TK Raid Frames</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/ssctk_raid_frames.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/ssctk_raid_frames.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/glm.png" alt="GLM" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.2">v1.0.3</span>
+              </div>
+              <h4>Gruul & Magtheridon</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/glm.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/glm.txt"><i class="fa-solid fa-copy"></i> Copy WA</button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/karazhan.png" alt="Karazhan" width="48" height="48" />
+                <!--  <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.5">v1.0.7</span>
+              </div>
+              <h4>Karazhan</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/karazhan.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/karazhan.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/TBC/karazhan.png" alt="Karazhan_raid_frames" width="48" height="48" />
+                <!-- <span class="version-new">New</span> -->
+                <span class="version" title="Older version: 1.0.0">v1.0.1</span>
+              </div>
+              <h4>Karazhan Raid Frames</h4>
+              <div class="ui-card-footer">
+                <a href="files/TBC/karazhan_raid_frames.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/TBC/karazhan_raid_frames.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- General Tools Forever-->
+        <div id="ForeverMenuGeneral" class="category-block">
+          <h3 class="category-title">
+            <i class="fas fa-cogs"></i>
+            General Tools Forever
+          </h3>
+          <div class="ui-grid">
+            <div class="ui-card general">
+              <div class="ui-card-header">
+                <img src="icons/general/curseforge.png" alt="FojjiCore" width="48" height="48" />
+                <span class="version">v3.1.4</span>
+              </div>
+              <h4>Fojji Core addon</h4>
+              <div class="ui-card-footer">
+                <a href="files/Forever/FojjiCore_3.1.4.zip" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <a href="https://www.curseforge.com/wow/addons/fojjicore" class="btn-view" target="_blank">
+                  <i class="fa-solid fa-copy"></i> CurseForge
+                </a>
+              </div>
+            </div>        
+            </div>
+          </div>
+
+        <!-- Raid Packs Forever -->
+        <div id="ForeverMenuRaids" class="category-block">
+          <h3 class="category-title">
+            <i class="fas fa-dungeon"></i>
+            Raid Packs Forever
+          </h3>
+
+          <div class="ui-grid">        
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/Forever/barrowdeeps.png" alt="Barrow Deeps" width="48" height="48" />
+                <!--<span class="version-new">New</span>--->
+                <span class="version" title="Older version: 1.0.0">v1.1.0</span>
+              </div>
+              <h4>Barrow Deeps</h4>
+              <div class="ui-card-footer">
+                <a href="files/Forever/barrowdeeps.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/Forever/barrowdeeps.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/Forever/hyjal.png" alt="Hyjal" width="48" height="48" />
+                <!--<span class="version-new">New</span>--->
+                <span class="version" title="Older version: 1.0.0">v1.1.1</span>
+              </div>
+              <h4>Hyjal Summit</h4>
+              <div class="ui-card-footer">
+                <a href="files/Forever/hyjal.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/Forever/hyjal.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-card raid">
+              <div class="ui-card-header">
+                <img src="icons/Forever/onyxia.png" alt="Onyxia's Lair" width="48" height="48" />
+                <!--<span class="version-new">New</span>-->
+                <span class="version" title="Older version: 1.0.0">v1.1.0</span>
+              </div>
+              <h4>Onyxia's Lair</h4>
+              <div class="ui-card-footer">
+                <a href="files/Forever/onyxia.txt" class="btn-download" target="_blank" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                <button class="btn-copy" data-file="files/Forever/onyxia.txt">
+                  <i class="fa-solid fa-copy"></i> Copy WA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MACROS POPUP -->
+    <div id="macrosModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Macros</h3>
+        <div class="macro-buttons">
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/gettohs.txt"
+            data-tooltip="Go to instance, use macro, tadaa!"
+          >
+            GettoHS Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/rightclickbuy.txt"
+            data-tooltip="Edit/Use macro, spam right click on the NPC to buy!"
+          >
+            Buyer Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/focus.txt"
+            data-tooltip="Use macro - focus target and cast spell, and whisper the focused target!"
+          >
+            Focus Cast Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/maxdistance.txt"
+            data-tooltip="Use macro - Expand the view distance."
+          >
+            Max Distance Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/rested.txt"
+            data-tooltip="Use macro - show how many rested XP you have."
+          >
+            Rested XP Macro
+          </button>
+          <button
+            class="btn-copy-macro"
+            data-file="files/macros/nodeath.txt"
+            data-tooltip="Use macro - disable death FX."
+          >
+            No Death FX Macro
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>For inquiries or support:</p>
+          <a href="mailto:support@wago-gameing.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            support@wago-gameing.com
+          </a>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://x.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.twitch.tv/" target="_blank"><i class="fab fa-twitch"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-10-10</p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

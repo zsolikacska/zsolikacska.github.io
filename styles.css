@@ -469,14 +469,14 @@ body {
 
 .section-subtitle {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 .section-info {
     text-align: center;
     margin-bottom: var(--spacing-2xl);
     color: var(--secondary-color);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -1152,3 +1152,110 @@ body {
 .btn-copy-macro:hover::before {
   opacity: 1;
 }
+
+/* ===== Password-protected Forever tab ===== */
+.forever-lock-panel[hidden],
+#foreverContentMount[hidden] {
+    display: none !important;
+}
+
+.forever-lock-panel {
+    max-width: 620px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.forever-lock-card {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: rgba(26, 26, 46, 0.94);
+    border: 1px solid rgba(0, 245, 255, 0.35);
+    border-radius: 1rem;
+    box-shadow: 0 0 28px rgba(0, 245, 255, 0.11);
+    text-align: center;
+}
+
+.forever-lock-icon {
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1rem;
+    border: 1px solid rgba(0, 245, 255, 0.4);
+    border-radius: 50%;
+    color: var(--primary-color);
+    background: rgba(0, 245, 255, 0.08);
+    font-size: 1.6rem;
+}
+
+.forever-lock-card h3 {
+    margin-bottom: 0.65rem;
+    color: var(--primary-color);
+    font-family: var(--font-primary);
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+}
+
+.forever-lock-card > p {
+    margin-bottom: 1.3rem;
+    color: var(--text-secondary);
+}
+
+#foreverUnlockForm {
+    max-width: 380px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+#foreverUnlockForm label {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+#foreverPassword {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(0, 245, 255, 0.35);
+    border-radius: 0.5rem;
+    outline: none;
+    background: rgba(10, 10, 15, 0.9);
+    color: var(--text-primary);
+    font: inherit;
+}
+
+#foreverPassword:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.12);
+}
+
+#foreverUnlockButton {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+    margin-top: 0.25rem;
+}
+
+#foreverUnlockButton:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.forever-unlock-message {
+    min-height: 1.4em;
+    margin: 0;
+    color: var(--error-color);
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.forever-unlock-message.success {
+    color: var(--success-color);
+}
+
+@media (max-width: 480px) {
+    .forever-lock-card {
+        padding: 1.3rem 1rem;
+    }
+}
+

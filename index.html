@@ -50,28 +50,28 @@
             Fojji Collection
           </h2>
           <p class="section-subtitle">
-            World of Warcraft Vanilla / TBC 20th Anniversary Edition & Forever - Last WA's Updated: 2026-08-26
+            World of Warcraft Vanilla / TBC 20th Anniversary Edition & Forever - Last WA's Updated: 2026-10-06
           </p>
           <p class="section-info">Make sure to DELETE the old version before copying the new one!</p>
 
           <!-- MENU -->
           <div id="menuSelect" class="content-menu" role="tablist" aria-label="WoW versions">
-            <button
-              type="button"
-              class="content-menu-item active"
-              data-menu="ClassicMenu"
-              role="tab"
-              aria-selected="true"
-            >
+            <button type="button" class="content-menu-item" data-menu="ClassicMenu" role="tab" aria-selected="false">
               Classic
             </button>
             <button type="button" class="content-menu-item" data-menu="TBCMenu" role="tab" aria-selected="false">
               TBC
             </button>
-            <button type="button" class="content-menu-item" data-menu="WotLKMenu" role="tab" aria-selected="false">
+            <!--  <button type="button" class="content-menu-item" data-menu="WotLKMenu" role="tab" aria-selected="false">
               WotLK
-            </button>
-            <button type="button" class="content-menu-item" data-menu="ForeverMenu" role="tab" aria-selected="false">
+            </button>-->
+            <button
+              type="button"
+              class="content-menu-item active"
+              data-menu="ForeverMenu"
+              role="tab"
+              aria-selected="true"
+            >
               Forever
             </button>
           </div>
@@ -550,10 +550,10 @@
           </h3>
 
           <div class="ui-grid">
-            <!--       <div class="ui-card raid">
-               <div class="ui-card-header">
+            <div class="ui-card raid">
+              <div class="ui-card-header">
                 <img src="icons/TBC/swp.png" alt="SWP" width="48" height="48" />
-                <span class="version-new">new ver.</span>
+                <!-- <span class="version-new">new ver.</span> -->
                 <span class="version" title="Older version: 1.0.0">v1.0.0</span>
               </div>
               <h4>SWP</h4>
@@ -564,7 +564,6 @@
                 <button class="btn-copy" data-file="files/TBC/swp.txt"><i class="fa-solid fa-copy"></i> Copy WA</button>
               </div>
             </div>
-            --->
 
             <div class="ui-card raid">
               <div class="ui-card-header">
@@ -717,6 +716,31 @@
             </div>
           </div>
         </div>
+
+        <!-- Forever content is kept encrypted in forever.enc.json and injected only after decryption. -->
+        <div id="foreverLockPanel" class="forever-lock-panel" hidden>
+          <div class="forever-lock-card">
+            <div class="forever-lock-icon"><i class="fas fa-lock" aria-hidden="true"></i></div>
+            <h3>Forever — jelszóval védett tartalom</h3>
+            <p>A Forever gyűjtemény megtekintéséhez add meg a jelszót.</p>
+            <form id="foreverUnlockForm" autocomplete="on">
+              <label for="foreverPassword">Jelszó</label>
+              <input
+                id="foreverPassword"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                minlength="1"
+              />
+              <button id="foreverUnlockButton" type="submit" class="btn btn-primary">
+                <i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás
+              </button>
+              <p id="foreverUnlockMessage" class="forever-unlock-message" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+        <div id="foreverContentMount" hidden></div>
       </section>
     </main>
 
@@ -793,7 +817,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-09-13</p>
+        <p>&copy; 2026 Wago Gaming Hub. All rights reserved. Last Web Updated: 2026-10-19</p>
       </div>
     </footer>
     <script src="script.js"></script>
