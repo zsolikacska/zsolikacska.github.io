@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Object Highlight">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Object Highlight</title>
+<!-- highlighted cube -->
+<path class="fsoft" d="m128 67 59 33-59 34-59-34z"/>
+<path class="s" d="M69 100v68l59 33 59-33v-68M128 134v67"/>
+<!-- four focus corners -->
+<path class="s" d="M34 68V35h39M183 35h39v33M34 188v33h39M183 221h39v-33"/>
+</svg>

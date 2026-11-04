@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forever titkosító — helyi eszköz</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+    body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; background:#0a0a0f; color:#f4f4f5; line-height:1.6; }
+    main { background:#171725; border:1px solid #00bfc8; border-radius:14px; padding:clamp(1.2rem,4vw,2rem); }
+    h1 { color:#00f5ff; }
+    label { display:block; margin-top:1rem; font-weight:650; }
+    input { width:100%; box-sizing:border-box; padding:.8rem; margin-top:.35rem; border:1px solid #3f3f52; border-radius:8px; background:#090910; color:white; font:inherit; }
+    button { margin-top:1.2rem; padding:.85rem 1.2rem; background:linear-gradient(135deg,#00f5ff,#8b5cf6); color:#05050a; font-weight:800; border:0; border-radius:8px; cursor:pointer; }
+    #status { white-space:pre-wrap; overflow-wrap:anywhere; } .warn { color:#fbbf24; } .ok { color:#34d399; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Forever tartalom titkosítása</h1>
+  <p>Ez az eszköz a Forever HTML-részletet a böngészőben, helyben titkosítja. A jelszót nem küldi el sehova.</p>
+  <p class="warn"><strong>Fontos:</strong> ezt a HTML-fájlt NE töltsd fel a GitHub repository-ba, mert benne van a Forever tartalom visszafejtés előtti, olvasható forrása. Csak az elkészült <code>forever.enc.json</code> fájlt töltsd fel.</p>
+  <form id="encryptForm">
+    <label for="password">Választott jelszó</label>
+    <input id="password" type="password" autocomplete="new-password" minlength="12" required>
+    <label for="confirmPassword">Jelszó újra</label>
+    <input id="confirmPassword" type="password" autocomplete="new-password" minlength="12" required>
+    <button id="encryptButton" type="submit">Titkosítás és JSON letöltése</button>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+</main>
+<script>
+'use strict';
+const FOREVER_HTML = "<div class=\"category-block\" id=\"ForeverMenuGeneral\">\n<h3 class=\"category-title\">\n<i class=\"fas fa-cogs\"></i>\n            General Tools Forever\n          </h3>\n<div class=\"ui-grid\">\n<div class=\"ui-card general\">\n<div class=\"ui-card-header\">\n<img alt=\"FojjiCore\" height=\"48\" src=\"icons/general/curseforge.png\" width=\"48\"/>\n<span class=\"version\">v3.1.4</span>\n</div>\n<h4>Fojji Core addon</h4>\n<div class=\"ui-card-footer\">\n<a class=\"btn-download\" download=\"\" href=\"files/Forever/FojjiCore_3.1.4.zip\" target=\"_blank\">\n<i class=\"fas fa-download\"></i> Download\n                </a>\n<a class=\"btn-view\" href=\"https://www.curseforge.com/wow/addons/fojjicore\" target=\"_blank\">\n<i class=\"fa-solid fa-copy\"></i> CurseForge\n                </a>\n</div>\n</div>\n</div>\n</div>\n\n<div class=\"category-block\" id=\"ForeverMenuRaids\">\n<h3 class=\"category-title\">\n<i class=\"fas fa-dungeon\"></i>\n            Raid Packs Forever\n          </h3>\n<div class=\"ui-grid\">\n<div class=\"ui-card raid\">\n<div class=\"ui-card-header\">\n<img alt=\"Barrow Deeps\" height=\"48\" src=\"icons/Forever/barrowdeeps.png\" width=\"48\"/>\n<!--<span class=\"version-new\">New</span>--->\n<span class=\"version\" title=\"Older version: 1.0.0\">v1.1.0</span>\n</div>\n<h4>Barrow Deeps</h4>\n<div class=\"ui-card-footer\">\n<a class=\"btn-download\" download=\"\" href=\"files/Forever/barrowdeeps.txt\" target=\"_blank\">\n<i class=\"fas fa-download\"></i> Download\n                </a>\n<button class=\"btn-copy\" data-file=\"files/Forever/barrowdeeps.txt\">\n<i class=\"fa-solid fa-copy\"></i> Copy WA\n                </button>\n</div>\n</div>\n<div class=\"ui-card raid\">\n<div class=\"ui-card-header\">\n<img alt=\"Hyjal\" height=\"48\" src=\"icons/Forever/hyjal.png\" width=\"48\"/>\n<!--<span class=\"version-new\">New</span>--->\n<span class=\"version\" title=\"Older version: 1.0.0\">v1.1.1</span>\n</div>\n<h4>Hyjal Summit</h4>\n<div class=\"ui-card-footer\">\n<a class=\"btn-download\" download=\"\" href=\"files/Forever/hyjal.txt\" target=\"_blank\">\n<i class=\"fas fa-download\"></i> Download\n                </a>\n<button class=\"btn-copy\" data-file=\"files/Forever/hyjal.txt\">\n<i class=\"fa-solid fa-copy\"></i> Copy WA\n                </button>\n</div>\n</div>\n<div class=\"ui-card raid\">\n<div class=\"ui-card-header\">\n<img alt=\"Onyxia's Lair\" height=\"48\" src=\"icons/Forever/onyxia.png\" width=\"48\"/>\n<!--<span class=\"version-new\">New</span>-->\n<span class=\"version\" title=\"Older version: 1.0.0\">v1.1.0</span>\n</div>\n<h4>Onyxia's Lair</h4>\n<div class=\"ui-card-footer\">\n<a class=\"btn-download\" download=\"\" href=\"files/Forever/onyxia.txt\" target=\"_blank\">\n<i class=\"fas fa-download\"></i> Download\n                </a>\n<button class=\"btn-copy\" data-file=\"files/Forever/onyxia.txt\">\n<i class=\"fa-solid fa-copy\"></i> Copy WA\n                </button>\n</div>\n</div>\n</div>\n</div>";
+const ITERATIONS = 600000;
+const encoder = new TextEncoder();
+function toBase64(bytes) {
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
+document.getElementById('encryptForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const status = document.getElementById('status');
+  const button = document.getElementById('encryptButton');
+  status.className = '';
+  if (!window.crypto || !window.crypto.subtle) {
+    status.textContent = 'A böngésző kriptográfiai API-ja nem érhető el. Nyisd meg friss Chrome vagy Edge böngészőben.';
+    return;
+  }
+  if (password.length < 12) {
+    status.textContent = 'Legalább 12 karakteres jelszót használj. A hosszabb, egyedi jelszó jobb.';
+    return;
+  }
+  if (password !== confirmPassword) {
+    status.textContent = 'A két jelszó nem egyezik.';
+    return;
+  }
+  button.disabled = true;
+  button.textContent = 'Titkosítás folyamatban…';
+  status.textContent = 'A jelszóalapú kulcs előállítása és a titkosítás folyamatban van.';
+  try {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const material = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey(
+      { name:'PBKDF2', salt, iterations:ITERATIONS, hash:'SHA-256' },
+      material,
+      { name:'AES-GCM', length:256 },
+      false,
+      ['encrypt']
+    );
+    const encrypted = await crypto.subtle.encrypt({ name:'AES-GCM', iv }, key, encoder.encode(FOREVER_HTML));
+    const payload = {
+      format:'forever-encrypted-v1',
+      algorithm:'AES-GCM-256',
+      kdf:'PBKDF2-SHA-256',
+      iterations:ITERATIONS,
+      salt:toBase64(salt),
+      iv:toBase64(iv),
+      ciphertext:toBase64(new Uint8Array(encrypted))
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type:'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'forever.enc.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    status.className = 'ok';
+    status.textContent = 'Kész! A forever.enc.json fájl letöltődött. Töltsd fel a weboldal index.html fájljával azonos gyökérkönyvtárba. A jelszó nincs benne a fájlban.';
+  } catch (error) {
+    console.error(error);
+    status.textContent = 'Hiba történt titkosítás közben: ' + (error.message || error);
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Titkosítás és JSON letöltése';
+    document.getElementById('password').value = '';
+    document.getElementById('confirmPassword').value = '';
+  }
+});
+</script>
+</body>
+</html>

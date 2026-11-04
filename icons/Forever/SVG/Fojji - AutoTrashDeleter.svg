@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - AutoTrashDeleter">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - AutoTrashDeleter</title>
+<!-- lid and handle -->
+<path class="s" d="M54 68h148M94 68V49h68v19"/>
+<path class="fsoft" d="M68 82h120l-9 132H77z"/>
+<!-- bin grooves -->
+<path class="s" d="M103 105v76M128 105v76M153 105v76"/>
+<!-- auto sweep accent -->
+<path class="s2" d="m185 42 12-12m-2 26 17-3"/>
+</svg>

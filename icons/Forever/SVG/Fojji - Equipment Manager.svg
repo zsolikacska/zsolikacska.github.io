@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Equipment Manager">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Equipment Manager</title>
+<!-- breastplate -->
+<path class="f" d="M78 38 106 26q22 18 44 0l28 12 38 48-27 24-17-17-4 117H88l-4-117-17 17-27-24z"/>
+<!-- armor seam and collar -->
+<path class="s2" d="M106 27q22 34 44 0M128 62v145M83 130l45 24 45-24"/>
+<!-- shoulder plates -->
+<path class="s2" d="m48 91 29-37m131 37-29-37"/>
+</svg>

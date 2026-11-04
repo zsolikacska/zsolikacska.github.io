@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Threat on Nameplates">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Threat on Nameplates</title>
+<!-- skull warning with transparent sockets -->
+<path class="f" fill-rule="evenodd" d="M105 34c-35 0-57 25-57 57 0 24 11 40 25 49v28h64v-28c14-9 25-25 25-49 0-32-22-57-57-57z M72 91a11 15 0 1 0 22 0a11 15 0 1 0-22 0z M116 91a11 15 0 1 0 22 0a11 15 0 1 0-22 0z M105 105l-9 16h18z M83 148h8v23h-8z M101 148h8v23h-8z M119 148h8v23h-8z"/>
+<!-- alert triangle -->
+<path class="f" d="m183 119 58 101h-116z"/>
+<path d="M183 151v31m0 17v2" stroke="#071D29" stroke-width="10" stroke-linecap="round"/>
+</svg>

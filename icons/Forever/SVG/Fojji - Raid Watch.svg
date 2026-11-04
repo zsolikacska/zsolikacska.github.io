@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Raid Watch">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Raid Watch</title>
+<!-- central leader -->
+<circle class="f" cx="128" cy="75" r="29"/>
+<path class="f" d="M68 184c0-35 25-57 60-57s60 22 60 57v18H68z"/>
+<!-- side members -->
+<circle class="f" cx="43" cy="105" r="20"/>
+<circle class="f" cx="213" cy="105" r="20"/>
+<path class="f" d="M14 187c0-25 12-40 31-40s31 15 31 40v15H14zm166 0c0-25 12-40 31-40s31 15 31 40v15h-62z"/>
+</svg>

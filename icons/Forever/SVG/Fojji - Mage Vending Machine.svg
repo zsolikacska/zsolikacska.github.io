@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Mage Vending Machine">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Mage Vending Machine</title>
+<!-- wand -->
+<path class="s" d="m70 202 91-104"/>
+<path class="f" d="m145 91 14-20 21 18-16 20z"/>
+<!-- sparkles -->
+<path class="f" d="M77 44q5 19 24 24-19 5-24 24-5-19-24-24 19-5 24-24zm91 5q4 15 19 19-15 4-19 19-4-15-19-19 15-4 19-19zm31 68q3 11 14 14-11 3-14 14-3-11-14-14 11-3 14-14z"/>
+<path class="s2" d="m43 112 8 8m-8 0 8-8m133-73 6-9m-3 15 10 2"/>
+</svg>

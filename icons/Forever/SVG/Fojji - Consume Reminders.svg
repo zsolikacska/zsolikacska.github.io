@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Consume Reminders">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Consume Reminders</title>
+<!-- bell dome -->
+<path class="f" d="M128 31c-28 0-45 21-45 51v39c0 23-9 37-24 51-5 6-1 16 8 16h122c9 0 13-10 8-16-15-14-24-28-24-51V82c0-30-17-51-45-51z"/>
+<path class="f" d="M105 204c3 17 12 26 23 26s20-9 23-26z"/>
+<path class="s2" d="M128 20v-8"/>
+<!-- reminder spark -->
+<path class="s2" d="m193 62 10-10m-4 25h15"/>
+</svg>

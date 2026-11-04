@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Sunder Armor on Nameplates">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Sunder Armor on Nameplates</title>
+<!-- armor shield with a transparent sunder slash -->
+<path class="f" fill-rule="evenodd" d="M128 23 213 57v62c0 56-34 94-85 119-51-25-85-63-85-119V57z M143 54l-55 91h40l-14 54 67-98h-43z"/>
+<!-- impact cracks -->
+<path class="s2" d="m43 107 25 12m120-12-25 12"/>
+</svg>

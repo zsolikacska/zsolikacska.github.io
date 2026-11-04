@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Character Stats">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Character Stats</title>
+<!-- chart baseline -->
+<path class="s" d="M39 213h181"/>
+<!-- three stats columns -->
+<rect class="f" x="49" y="151" width="38" height="62" rx="7"/>
+<rect class="f" x="109" y="102" width="38" height="111" rx="7"/>
+<rect class="f" x="169" y="45" width="38" height="168" rx="7"/>
+<!-- stat trend -->
+<path class="s2" d="m58 128 43-31 31 9 61-58"/>
+<path class="f" d="m181 47 21-8-3 23z"/>
+</svg>

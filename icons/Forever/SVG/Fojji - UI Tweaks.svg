@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - UI Tweaks">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - UI Tweaks</title>
+<!-- app window -->
+<rect class="s" x="28" y="35" width="174" height="145" rx="14"/>
+<path class="s" d="M28 73h174"/>
+<circle class="f" cx="51" cy="54" r="6"/><circle class="f" cx="73" cy="54" r="6"/><circle class="f" cx="95" cy="54" r="6"/>
+<!-- gear overlay with a transparent center -->
+<path class="f" fill-rule="evenodd" d="M190 117l9 6 14-5 8 14-10 11 2 15-15 7-11-10-15 2-7-15 10-11-2-15z M177 145a12 12 0 1 0 24 0a12 12 0 1 0-24 0z"/>
+</svg>

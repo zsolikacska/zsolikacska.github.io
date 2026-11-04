@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Character Dot">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Character Dot</title>
+<!-- classic friendly skull, intentionally retained; eye sockets are transparent -->
+<path class="f" fill-rule="evenodd" d="M128 24c-48 0-78 34-78 77 0 31 15 51 34 62v36c0 8 6 14 14 14h60c8 0 14-6 14-14v-36c19-11 34-31 34-62 0-43-30-77-78-77z M83 105a15 19 0 1 0 30 0a15 19 0 1 0-30 0z M143 105a15 19 0 1 0 30 0a15 19 0 1 0-30 0z M128 122l-13 24h26z M100 179h9v31h-9z M124 179h9v31h-9z M148 179h9v31h-9z"/>
+</svg>

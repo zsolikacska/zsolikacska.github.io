@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Item Manager">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Item Manager</title>
+<!-- three isometric item boxes -->
+<path class="fsoft" d="m128 25 48 27-48 27-48-27z"/>
+<path class="s" d="M80 52v54l48 27 48-27V52M128 79v54"/>
+<path class="fsoft" d="m68 105 43 24-43 25-43-25z"/>
+<path class="s" d="M25 129v48l43 24 43-24v-48M68 154v47"/>
+<path class="fsoft" d="m188 105 43 24-43 25-43-25z"/>
+<path class="s" d="M145 129v48l43 24 43-24v-48M188 154v47"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Numen - Essentials">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Numen - Essentials</title>
+<!-- shield -->
+<path class="fsoft" d="M128 20 210 52v63c0 55-35 95-82 122-47-27-82-67-82-122V52z"/>
+<!-- stylized N -->
+<path class="f" d="M82 176V76h25l43 57V76h25v100h-25l-43-57v57z"/>
+</svg>

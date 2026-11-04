@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Plater Profile">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Plater Profile</title>
+<!-- profile plate with avatar -->
+<rect class="fsoft" x="35" y="39" width="186" height="177" rx="16"/>
+<path class="s" d="M35 78h186"/>
+<circle class="f" cx="77" cy="59" r="7"/><circle class="f" cx="101" cy="59" r="7"/><circle class="f" cx="125" cy="59" r="7"/>
+<!-- profile bust -->
+<circle class="f" cx="93" cy="119" r="21"/>
+<path class="f" d="M55 184c0-25 16-42 38-42s38 17 38 42v7H55z"/>
+<!-- profile data lines / layers -->
+<path class="s" d="M151 112h47M151 140h47M151 168h30"/>
+<path class="f" d="m183 184 17 10-17 10-17-10z"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Cooldown Pulse">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Cooldown Pulse</title>
+<!-- stopwatch -->
+<path class="s" d="M111 28h34M128 28v18M174 56l13-13"/>
+<circle class="fsoft" cx="128" cy="142" r="79"/>
+<path class="s" d="M128 82v60l39 23"/>
+<!-- pulse line -->
+<path class="s" d="M61 149h25l13-25 20 48 17-34 13 11h46"/>
+</svg>

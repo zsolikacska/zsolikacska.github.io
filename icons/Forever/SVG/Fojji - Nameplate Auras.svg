@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Nameplate Auras">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Nameplate Auras</title>
+<!-- compact aura/nameplate strips -->
+<rect class="fsoft" x="54" y="35" width="150" height="43" rx="9"/>
+<rect class="f" x="68" y="48" width="46" height="17" rx="5"/>
+<rect class="f" x="123" y="48" width="22" height="17" rx="5"/>
+<rect class="f" x="154" y="48" width="36" height="17" rx="5"/>
+<rect class="fsoft" x="35" y="108" width="150" height="43" rx="9"/>
+<rect class="f" x="49" y="121" width="26" height="17" rx="5"/>
+<rect class="f" x="84" y="121" width="54" height="17" rx="5"/>
+<rect class="f" x="147" y="121" width="24" height="17" rx="5"/>
+<rect class="fsoft" x="71" y="181" width="150" height="43" rx="9"/>
+<rect class="f" x="85" y="194" width="34" height="17" rx="5"/>
+<rect class="f" x="128" y="194" width="74" height="17" rx="5"/>
+</svg>

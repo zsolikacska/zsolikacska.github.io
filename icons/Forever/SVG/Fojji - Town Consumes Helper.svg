@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Town Consumes Helper">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Town Consumes Helper</title>
+<!-- potion bottle -->
+<path class="fsoft" d="M54 31h46v16l-7 11v20l27 38c9 13 0 30-15 30H49c-15 0-24-17-15-30l27-38V58l-7-11z"/>
+<path class="s2" d="M51 93h52M53 106q25-9 49 0"/>
+<!-- small home overlay with a transparent doorway -->
+<path class="f" fill-rule="evenodd" d="m137 141 52-45 52 45-13 15-8-7v66h-62v-66l-8 7z M180 174h19v41h-19z"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Target Name on Nameplate">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Target Name on Nameplate</title>
+<!-- avatar head and shoulders -->
+<circle class="f" cx="128" cy="72" r="35"/>
+<path class="f" d="M66 185c0-36 26-59 62-59s62 23 62 59v7H66z"/>
+<!-- nameplate bar -->
+<rect class="s" x="34" y="204" width="188" height="28" rx="12"/>
+<path class="f" d="M48 213h90v10H48z"/>
+</svg>

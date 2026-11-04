@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Clickable Consumes">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Clickable Consumes</title>
+<!-- potion bottle -->
+<path class="fsoft" d="M91 36h54v20l-8 12v23l35 47c10 14 0 34-17 34H95c-17 0-27-20-17-34l35-47V68l-22-12z"/>
+<path class="s2" d="M109 89h28M91 135q35-17 71 0"/>
+<!-- cursor pointer -->
+<path class="f" d="m167 137 52 48-25 2 13 30-17 8-14-31-16 17z"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Debuff Tracker">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Debuff Tracker</title>
+<!-- skull with transparent sockets -->
+<path class="f" fill-rule="evenodd" d="M128 52c-37 0-61 27-61 61 0 25 12 42 27 51v27h68v-27c15-9 27-26 27-51 0-34-24-61-61-61z M91 117a12 16 0 1 0 24 0a12 16 0 1 0-24 0z M141 117a12 16 0 1 0 24 0a12 16 0 1 0-24 0z M128 132l-10 18h20z M104 172h8v24h-8z M124 172h8v24h-8z M144 172h8v24h-8z"/>
+<!-- targeting corners -->
+<path class="s" d="M30 72V39h33M193 39h33v33M30 184v33h33M193 217h33v-33"/>
+</svg>

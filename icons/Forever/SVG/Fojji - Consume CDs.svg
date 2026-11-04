@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img" aria-label="Fojji - Consume CDs">
+<style>
+  .s { fill:none; stroke:#00EAF5; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+  .s2 { fill:none; stroke:#00EAF5; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+  .f { fill:#00EAF5; }
+  .fsoft { fill:#00EAF5; fill-opacity:.16; stroke:#00EAF5; stroke-width:10; stroke-linejoin:round; }
+  .dot { fill:#00EAF5; }
+</style>
+<title>Fojji - Consume CDs</title>
+<!-- circular arrows -->
+<path class="s" d="M67 96a70 70 0 0 1 119-32"/>
+<path class="f" d="m179 35 31 4-13 28z"/>
+<path class="s" d="M190 160a70 70 0 0 1-119 32"/>
+<path class="f" d="m78 221-31-4 13-28z"/>
+<!-- potion in center -->
+<path class="fsoft" d="M109 82h38v13l-7 9v17l24 34c8 12 0 27-14 27h-44c-14 0-22-15-14-27l24-34v-17l-7-9z"/>
+<path class="s2" d="M108 143q20-9 40 0"/>
+</svg>
