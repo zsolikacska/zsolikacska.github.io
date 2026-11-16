@@ -1,4 +1,5 @@
 # Helyi titkosító eszköz – ne kerüljön fel a GitHubra
+/local-only/
 encrypt-forever-local.html
 encrypt-forever-local_old.html
 forever-content.html

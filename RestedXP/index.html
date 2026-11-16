@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RestedXP – Wago Gaming Hub</title>
+    <link rel="icon" type="image/x-icon" href="../icons/favicon.ico" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      .rxp-gate-wrap {
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+      }
+      .rxp-gate-card {
+        width: min(100%, 560px);
+        text-align: center;
+      }
+      .rxp-gate-lock {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 1.25rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+        color: var(--primary-color);
+        background: rgba(0, 245, 255, 0.08);
+        border: 1px solid rgba(0, 245, 255, 0.35);
+        box-shadow: var(--shadow-md);
+      }
+      .rxp-gate-form {
+        max-width: 420px;
+        margin: 1.5rem auto 0;
+        text-align: left;
+      }
+      .rxp-gate-form label {
+        display: block;
+        color: var(--text-secondary);
+        margin-bottom: 0.45rem;
+        font-weight: 600;
+      }
+      .rxp-gate-input {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border: 1px solid rgba(0, 245, 255, 0.3);
+        border-radius: var(--border-radius);
+        font: inherit;
+        outline: none;
+      }
+      .rxp-gate-input:focus {
+        border-color: var(--primary-color);
+        box-shadow: var(--shadow-sm);
+      }
+      .rxp-gate-button {
+        width: 100%;
+        margin-top: 1rem;
+        justify-content: center;
+      }
+      .rxp-gate-status {
+        min-height: 1.6em;
+        margin-top: 1rem;
+        color: var(--error-color);
+        text-align: center;
+      }
+      .rxp-gate-status.ok {
+        color: var(--success-color);
+      }
+      .rxp-gate-back {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+      .rxp-gate-back:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-animation" aria-hidden="true">
+      <div class="floating-particles"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <header class="header">
+      <nav class="navbar">
+        <a href="../index.html" aria-label="Wago Gaming Hub">
+          <div class="logo">
+            <i class="fas fa-gamepad"></i><span>Wago <span class="accent">Gaming</span></span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><span class="nav-link active">RestedXP</span></li>
+        </ul>
+        <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <section class="content-section rxp-gate-wrap">
+        <div class="category-block rxp-gate-card">
+          <div class="rxp-gate-lock"><i class="fas fa-lock" aria-hidden="true"></i></div>
+          <h1 class="section-title" style="font-size: clamp(1.5rem, 4vw, 2.2rem)">RestedXP – jelszóval védett</h1>
+          <p class="section-subtitle">A generátor megnyitásához add meg a Forever menü jelszavát.</p>
+          <form id="rxpUnlockForm" class="rxp-gate-form" autocomplete="off">
+            <label for="rxpPassword">Forever jelszó</label>
+            <input id="rxpPassword" class="rxp-gate-input" type="password" autocomplete="current-password" required />
+            <button id="rxpUnlockButton" class="btn btn-primary rxp-gate-button" type="submit">
+              <i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás
+            </button>
+            <p id="rxpGateStatus" class="rxp-gate-status" role="status" aria-live="polite"></p>
+          </form>
+          <a class="rxp-gate-back" href="../index.html"
+            ><i class="fas fa-arrow-left"></i> Vissza a Wago Gaming Hubhoz</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <script>
+      "use strict";
+      (() => {
+        const form = document.getElementById("rxpUnlockForm");
+        const passwordInput = document.getElementById("rxpPassword");
+        const button = document.getElementById("rxpUnlockButton");
+        const status = document.getElementById("rxpGateStatus");
+        const ENCRYPTED_URL = new URL("./restedxp.enc.json", document.baseURI);
+
+        function setStatus(message, ok = false) {
+          status.textContent = message;
+          status.classList.toggle("ok", ok);
+        }
+        function fromBase64(value) {
+          if (typeof value !== "string") throw new Error("A titkosított fájl hibás.");
+          const binary = atob(value);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+          return bytes;
+        }
+        async function decryptHtml(password, payload) {
+          if (!window.crypto?.subtle)
+            throw new Error(
+              "A böngésző nem támogatja a Web Crypto API-t. Nyisd meg HTTPS-en, friss Chrome vagy Edge böngészővel.",
+            );
+          if (
+            !payload ||
+            payload.format !== "forever-encrypted-v1" ||
+            payload.algorithm !== "AES-GCM-256" ||
+            payload.kdf !== "PBKDF2-SHA-256"
+          ) {
+            throw new Error("A titkosított RestedXP fájl formátuma nem megfelelő.");
+          }
+          const iterations = Number(payload.iterations);
+          if (!Number.isInteger(iterations) || iterations < 100000 || iterations > 2000000) {
+            throw new Error("Érvénytelen titkosítási beállítás.");
+          }
+          const salt = fromBase64(payload.salt);
+          const iv = fromBase64(payload.iv);
+          const ciphertext = fromBase64(payload.ciphertext);
+          if (salt.length < 16 || iv.length !== 12 || ciphertext.length < 16) {
+            throw new Error("A titkosított RestedXP fájl hiányos vagy sérült.");
+          }
+          const encoder = new TextEncoder();
+          const material = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, [
+            "deriveKey",
+          ]);
+          const key = await crypto.subtle.deriveKey(
+            { name: "PBKDF2", salt, iterations, hash: "SHA-256" },
+            material,
+            { name: "AES-GCM", length: 256 },
+            false,
+            ["decrypt"],
+          );
+          const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ciphertext);
+          return new TextDecoder("utf-8", { fatal: true }).decode(plain);
+        }
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const password = passwordInput.value;
+          if (!password) return;
+          button.disabled = true;
+          button.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Visszafejtés…';
+          setStatus("");
+          try {
+            const response = await fetch(`${ENCRYPTED_URL.href}?v=1`, { cache: "no-store" });
+            if (!response.ok) {
+              if (response.status === 404)
+                throw new Error("A restedxp.enc.json még nincs feltöltve a RestedXP mappába.");
+              throw new Error(`Nem sikerült betölteni a titkosított fájlt (HTTP ${response.status}).`);
+            }
+            const payload = await response.json();
+            const html = await decryptHtml(password, payload);
+            if (!html.includes('id="generatorForm"') || !html.includes("WAGO_RXP_EMBEDDED_PACK")) {
+              throw new Error(
+                "A visszafejtett fájl nem a várt RestedXP generátor. Készítsd újra a helyi csomagolóval.",
+              );
+            }
+            // Replaces this gate document with the decrypted, self-contained application.
+            passwordInput.value = "";
+            document.open();
+            document.write(html);
+            document.close();
+          } catch (error) {
+            const wrongPassword = error && (error.name === "OperationError" || error.name === "DataError");
+            setStatus(
+              wrongPassword
+                ? "Hibás Forever jelszó, vagy sérült titkosított fájl."
+                : error.message || "Nem sikerült feloldani a RestedXP oldalt.",
+            );
+            passwordInput.value = "";
+            passwordInput.focus();
+          } finally {
+            button.disabled = false;
+            button.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás';
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

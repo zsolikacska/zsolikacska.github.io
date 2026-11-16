@@ -471,8 +471,10 @@ async function unlockForever() {
         }
         const payload = await response.json();
         const decryptedHtml = await decryptForeverHtml(password, payload);
-        if (!decryptedHtml.includes('ForeverMenuGeneral') || !decryptedHtml.includes('ForeverMenuRaids')) {
-            throw new Error('A visszafejtett tartalom nem a várt Forever oldal. Ellenőrizd, hogy a megfelelő fájlt töltötted-e fel.');
+        const requiredForeverSections = ['ForeverMenuGeneral', 'ForeverMenuRaids', 'ForeverMenuClassUI'];
+        const missingForeverSections = requiredForeverSections.filter(id => !decryptedHtml.includes(`id=\"${id}\"`));
+        if (missingForeverSections.length) {
+            throw new Error('A titkosított Forever tartalomból hiányzó szekció: ' + missingForeverSections.join(', ') + '. Ellenőrizd a forever-content.html fájlt.');
         }
 
         foreverContentMount.innerHTML = decryptedHtml;

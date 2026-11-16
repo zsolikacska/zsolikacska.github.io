@@ -1,0 +1,10 @@
+# Local-only RestedXP source, plaintext app bundle and utilities — do not publish
+/local-only/
+
+# Remove legacy unencrypted public app files from tracking before publishing the gate
+/generator.js
+/restedxp.css
+/guide-pack.json
+/pack-builder.html
+/pack-builder.js
+/samples/
