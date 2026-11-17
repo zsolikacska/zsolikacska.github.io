@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="hu">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -109,18 +109,18 @@
       <section class="content-section rxp-gate-wrap">
         <div class="category-block rxp-gate-card">
           <div class="rxp-gate-lock"><i class="fas fa-lock" aria-hidden="true"></i></div>
-          <h1 class="section-title" style="font-size: clamp(1.5rem, 4vw, 2.2rem)">RestedXP – jelszóval védett</h1>
-          <p class="section-subtitle">A generátor megnyitásához add meg a Forever menü jelszavát.</p>
+          <h1 class="section-title" style="font-size: clamp(1.5rem, 4vw, 2.2rem)">RestedXP – Password Protected</h1>
+          <p class="section-subtitle">Enter your Forever menu password to access the generator.</p>
           <form id="rxpUnlockForm" class="rxp-gate-form" autocomplete="off">
-            <label for="rxpPassword">Forever jelszó</label>
+            <label for="rxpPassword">Forever password</label>
             <input id="rxpPassword" class="rxp-gate-input" type="password" autocomplete="current-password" required />
             <button id="rxpUnlockButton" class="btn btn-primary rxp-gate-button" type="submit">
-              <i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás
+              <i class="fas fa-unlock-alt" aria-hidden="true"></i> Unlock
             </button>
             <p id="rxpGateStatus" class="rxp-gate-status" role="status" aria-live="polite"></p>
           </form>
           <a class="rxp-gate-back" href="../index.html"
-            ><i class="fas fa-arrow-left"></i> Vissza a Wago Gaming Hubhoz</a
+            ><i class="fas fa-arrow-left"></i> Back to Wago Gaming Hub</a
           >
         </div>
       </section>
@@ -140,7 +140,7 @@
           status.classList.toggle("ok", ok);
         }
         function fromBase64(value) {
-          if (typeof value !== "string") throw new Error("A titkosított fájl hibás.");
+          if (typeof value !== "string") throw new Error("The encrypted file is invalid.");
           const binary = atob(value);
           const bytes = new Uint8Array(binary.length);
           for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
@@ -149,7 +149,7 @@
         async function decryptHtml(password, payload) {
           if (!window.crypto?.subtle)
             throw new Error(
-              "A böngésző nem támogatja a Web Crypto API-t. Nyisd meg HTTPS-en, friss Chrome vagy Edge böngészővel.",
+              "Your browser does not support the Web Crypto API. Open this page over HTTPS in an up-to-date version of Chrome or Edge.",
             );
           if (
             !payload ||
@@ -157,17 +157,17 @@
             payload.algorithm !== "AES-GCM-256" ||
             payload.kdf !== "PBKDF2-SHA-256"
           ) {
-            throw new Error("A titkosított RestedXP fájl formátuma nem megfelelő.");
+            throw new Error("The encrypted RestedXP file has an unsupported format.");
           }
           const iterations = Number(payload.iterations);
           if (!Number.isInteger(iterations) || iterations < 100000 || iterations > 2000000) {
-            throw new Error("Érvénytelen titkosítási beállítás.");
+            throw new Error("Invalid encryption settings.");
           }
           const salt = fromBase64(payload.salt);
           const iv = fromBase64(payload.iv);
           const ciphertext = fromBase64(payload.ciphertext);
           if (salt.length < 16 || iv.length !== 12 || ciphertext.length < 16) {
-            throw new Error("A titkosított RestedXP fájl hiányos vagy sérült.");
+            throw new Error("The encrypted RestedXP file is incomplete or corrupted.");
           }
           const encoder = new TextEncoder();
           const material = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, [
@@ -189,20 +189,20 @@
           const password = passwordInput.value;
           if (!password) return;
           button.disabled = true;
-          button.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Visszafejtés…';
+          button.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Decrypting…';
           setStatus("");
           try {
             const response = await fetch(`${ENCRYPTED_URL.href}?v=1`, { cache: "no-store" });
             if (!response.ok) {
               if (response.status === 404)
-                throw new Error("A restedxp.enc.json még nincs feltöltve a RestedXP mappába.");
-              throw new Error(`Nem sikerült betölteni a titkosított fájlt (HTTP ${response.status}).`);
+                throw new Error("restedxp.enc.json has not been uploaded to the RestedXP folder yet.");
+              throw new Error(`Failed to load the encrypted file (HTTP ${response.status}).`);
             }
             const payload = await response.json();
             const html = await decryptHtml(password, payload);
             if (!html.includes('id="generatorForm"') || !html.includes("WAGO_RXP_EMBEDDED_PACK")) {
               throw new Error(
-                "A visszafejtett fájl nem a várt RestedXP generátor. Készítsd újra a helyi csomagolóval.",
+                "The decrypted file is not the expected RestedXP generator. Please rebuild it using the local packager.",
               );
             }
             // Replaces this gate document with the decrypted, self-contained application.
@@ -214,14 +214,14 @@
             const wrongPassword = error && (error.name === "OperationError" || error.name === "DataError");
             setStatus(
               wrongPassword
-                ? "Hibás Forever jelszó, vagy sérült titkosított fájl."
-                : error.message || "Nem sikerült feloldani a RestedXP oldalt.",
+                ? "Incorrect Forever password or corrupted encrypted file."
+                : error.message || "Failed to unlock the RestedXP page.",
             );
             passwordInput.value = "";
             passwordInput.focus();
           } finally {
             button.disabled = false;
-            button.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás';
+            button.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Unlock';
           }
         });
       })();

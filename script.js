@@ -33,7 +33,7 @@ function highlightNavigation() {
   navLinks.forEach(link => {
     const href = link.getAttribute("href");
 
-    // 🔥 Ha nincs href (pl. Macros button), kihagyjuk
+    // 🔥 If there is no href (e.g. the Macros button), skip it.
     if (!href || !href.startsWith("#")) return;
 
     const sectionId = href.slice(1);
@@ -288,7 +288,7 @@ copyButtons.forEach((btn) => {
 
         fetch(fileUrl)
             .then(res => {
-                if (!res.ok) throw new Error("Nem sikerült betölteni a fájlt");
+                if (!res.ok) throw new Error("Failed to load the file");
                 return res.text();
             })
             .then(text => navigator.clipboard.writeText(text))
@@ -299,8 +299,8 @@ copyButtons.forEach((btn) => {
                 }, 1500);
             })
             .catch(err => {
-                console.error("Hiba a másolás során:", err);
-                alert("Nem sikerült a fájl tartalmát másolni.");
+                console.error("Error while copying:", err);
+                alert("Failed to copy the file contents.");
             });
     });
 });
@@ -324,7 +324,7 @@ downloadButtons.forEach(btn => {
                 a.click();
                 document.body.removeChild(a);
             })
-            .catch(err => console.error("Letöltési hiba:", err));
+            .catch(err => console.error("Download error:", err));
     });
 });
 
@@ -374,14 +374,14 @@ function base64ToBytes(value) {
 
 async function decryptForeverHtml(password, payload) {
     if (!window.crypto || !window.crypto.subtle) {
-        throw new Error('A böngésző nem támogatja a szükséges Web Crypto funkciót. Próbáld HTTPS-en, friss böngészővel.');
+        throw new Error('Your browser does not support the required Web Crypto functionality. Try using HTTPS and an up-to-date browser.');
     }
     if (!payload || payload.format !== 'forever-encrypted-v1' || payload.algorithm !== 'AES-GCM-256' || payload.kdf !== 'PBKDF2-SHA-256') {
-        throw new Error('A titkosított fájl formátuma nem megfelelő.');
+        throw new Error('Invalid encrypted file format.');
     }
     const iterations = Number(payload.iterations);
     if (!Number.isInteger(iterations) || iterations < 100000 || iterations > 2000000) {
-        throw new Error('A titkosított fájl PBKDF2 beállítása érvénytelen.');
+        throw new Error('The encrypted file contains invalid PBKDF2 settings.');
     }
 
     const encoder = new TextEncoder();
@@ -389,7 +389,7 @@ async function decryptForeverHtml(password, payload) {
     const iv = base64ToBytes(payload.iv);
     const ciphertext = base64ToBytes(payload.ciphertext);
     if (salt.length < 16 || iv.length !== 12 || ciphertext.length < 16) {
-        throw new Error('A titkosított fájl hiányos vagy sérült.');
+        throw new Error('The encrypted file is incomplete or corrupted.');
     }
 
     const material = await crypto.subtle.importKey(
@@ -423,7 +423,7 @@ function enableForeverFileButtons() {
                 }, 1500);
             } catch (error) {
                 console.error('Forever Copy WA error:', error);
-                alert('Nem sikerült a fájl tartalmát másolni. Ellenőrizd a fájlt és a böngésző vágólapengedélyét.');
+                alert('Failed to copy the file contents. Check the file and your browser\'s clipboard permissions.');
             }
         });
     });
@@ -446,7 +446,7 @@ function enableForeverFileButtons() {
                 setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
             } catch (error) {
                 console.error('Forever download error:', error);
-                alert('Nem sikerült letölteni a fájlt. Ellenőrizd a kapcsolatot és a fájl elérési útját.');
+                alert('Failed to download the file. Check your connection and the file path.');
             }
         });
     });
@@ -455,26 +455,26 @@ function enableForeverFileButtons() {
 async function unlockForever() {
     const password = foreverPasswordInput.value;
     if (!password) {
-        setForeverMessage('Add meg a jelszót.');
+        setForeverMessage('Please enter the password.');
         return;
     }
 
     foreverUnlockButton.disabled = true;
-    foreverUnlockButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Visszafejtés…';
+    foreverUnlockButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Decrypting…';
     setForeverMessage('');
     try {
         const response = await fetch(new URL('forever.enc.json', document.baseURI).toString(), { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(response.status === 404
-                ? 'Nem található a forever.enc.json. Töltsd fel a GitHub repository gyökérkönyvtárába.'
-                : 'Nem sikerült betölteni a titkosított fájlt (HTTP ' + response.status + ').');
+                ? 'forever.enc.json not found. Please upload it to the root directory of your GitHub repository.'
+                : 'Failed to load the encrypted file (HTTP ' + response.status + ').');
         }
         const payload = await response.json();
         const decryptedHtml = await decryptForeverHtml(password, payload);
         const requiredForeverSections = ['ForeverMenuGeneral', 'ForeverMenuRaids', 'ForeverMenuClassUI'];
         const missingForeverSections = requiredForeverSections.filter(id => !decryptedHtml.includes(`id=\"${id}\"`));
         if (missingForeverSections.length) {
-            throw new Error('A titkosított Forever tartalomból hiányzó szekció: ' + missingForeverSections.join(', ') + '. Ellenőrizd a forever-content.html fájlt.');
+            throw new Error('Missing section(s) in the encrypted Forever content: ' + missingForeverSections.join(', ') + '. Please check your forever-content.html file.');
         }
 
         foreverContentMount.innerHTML = decryptedHtml;
@@ -482,16 +482,17 @@ async function unlockForever() {
         foreverUnlocked = true;
         foreverLockPanel.hidden = true;
         foreverContentMount.hidden = false;
-        setForeverMessage('Sikeres feloldás.', 'success');
+        setForeverMessage('Successfully unlocked.', 'success');
+
         // Remove the password from the field after use.
         foreverPasswordInput.value = '';
     } catch (error) {
         console.error('Forever decryption failed:', error);
         const likelyWrongPassword = error && (error.name === 'OperationError' || error.name === 'DataError');
-        setForeverMessage(likelyWrongPassword ? 'Hibás jelszó, vagy sérült titkosított fájl.' : (error.message || 'A Forever tartalom nem nyitható meg.'));
+        setForeverMessage(likelyWrongPassword ? 'Incorrect password or corrupted encrypted file.' : (error.message || 'The Forever content could not be opened.'));
     } finally {
         foreverUnlockButton.disabled = false;
-        foreverUnlockButton.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Feloldás';
+        foreverUnlockButton.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Unlock';
     }
 }
 
