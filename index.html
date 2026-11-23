@@ -83,11 +83,15 @@
         </div>
 
         <!-- General Tools -->
-        <div id="ClassicMenuGeneral" class="category-block">
-          <h3 class="category-title">
-            <i class="fas fa-cogs"></i>
-            General Tools Classic
-          </h3>
+        <details id="ClassicMenuGeneral" class="category-block version-accordion" open>
+          <summary>
+            <h3 class="category-title">
+              <i class="fas fa-cogs"></i>
+              General Tools Classic
+            </h3>
+            <span class="category-toggle-indicator" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+          </summary>
+
           <div class="ui-grid">
             <div class="ui-card general">
               <div class="ui-card-header">
@@ -183,14 +187,17 @@
               </div>
             </div>
           </div>
-        </div>
+        </details>
 
         <!-- Raid Packs -->
-        <div id="ClassicMenuRaids" class="category-block">
-          <h3 class="category-title">
-            <i class="fas fa-dungeon"></i>
-            Raid Packs Classic
-          </h3>
+        <details id="ClassicMenuRaids" class="category-block version-accordion" open>
+          <summary>
+            <h3 class="category-title">
+              <i class="fas fa-dungeon"></i>
+              Raid Packs Classic
+            </h3>
+            <span class="category-toggle-indicator" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+          </summary>
 
           <div class="ui-grid">
             <div class="ui-card raid">
@@ -274,13 +281,18 @@
               </div>
             </div>
           </div>
-        </div>
+        </details>
+
         <!-- General Tools TBC-->
-        <div id="TBCMenuGeneral" class="category-block">
-          <h3 class="category-title">
-            <i class="fas fa-cogs"></i>
-            General Tools TBC
-          </h3>
+        <details id="TBCMenuGeneral" class="category-block version-accordion" open>
+          <summary>
+            <h3 class="category-title">
+              <i class="fas fa-cogs"></i>
+              General Tools TBC
+            </h3>
+            <span class="category-toggle-indicator" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+          </summary>
+
           <div class="ui-grid">
             <div class="ui-card general">
               <div class="ui-card-header">
@@ -534,14 +546,17 @@
               </div>
             </div>
           </div>
-        </div>
+        </details>
 
         <!-- Raid Packs TBC -->
-        <div id="TBCMenuRaids" class="category-block">
-          <h3 class="category-title">
-            <i class="fas fa-dungeon"></i>
-            Raid Packs TBC
-          </h3>
+        <details id="TBCMenuRaids" class="category-block version-accordion" open>
+          <summary>
+            <h3 class="category-title">
+              <i class="fas fa-dungeon"></i>
+              Raid Packs TBC
+            </h3>
+            <span class="category-toggle-indicator" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+          </summary>
 
           <div class="ui-grid">
             <div class="ui-card raid">
@@ -726,7 +741,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </details>
 
         <!-- Forever content is kept encrypted in json and injected only after decryption. -->
         <div id="foreverLockPanel" class="forever-lock-panel" hidden>

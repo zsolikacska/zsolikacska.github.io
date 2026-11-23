@@ -1330,3 +1330,97 @@ body {
     }
 }
 
+/* ===== CLASSIC + TBC COLLAPSIBLE CATEGORY PANELS ===== */
+/* Match the Forever accordion: separated panels, right-side cyan chevron. */
+details.category-block.version-accordion {
+    margin-bottom: 12px;
+}
+
+details.category-block.version-accordion > .ui-grid {
+    margin-top: 16px;
+}
+
+details.category-block.version-accordion > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    width: 100%;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+details.category-block.version-accordion > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.category-block.version-accordion > summary::marker {
+    content: "";
+}
+
+details.category-block.version-accordion > summary > .category-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+}
+
+details.category-block.version-accordion .category-toggle-indicator {
+    display: grid;
+    place-items: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    border: 1px solid rgba(0, 245, 255, 0.34);
+    border-radius: 12px;
+    color: #00f5ff;
+    background: linear-gradient(145deg, rgba(0, 245, 255, 0.13), rgba(0, 245, 255, 0.035));
+    box-shadow: inset 0 0 16px rgba(0, 245, 255, 0.055), 0 0 14px rgba(0, 245, 255, 0.07);
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+details.category-block.version-accordion .category-toggle-indicator i {
+    font-size: 16px;
+    transition: transform 220ms ease;
+}
+
+details.category-block.version-accordion > summary:hover .category-toggle-indicator,
+details.category-block.version-accordion > summary:focus-visible .category-toggle-indicator {
+    border-color: rgba(0, 245, 255, 0.85);
+    background: rgba(0, 245, 255, 0.16);
+    box-shadow: inset 0 0 18px rgba(0, 245, 255, 0.1), 0 0 18px rgba(0, 245, 255, 0.2);
+}
+
+details.category-block.version-accordion > summary:focus-visible {
+    outline: 2px solid rgba(0, 245, 255, 0.8);
+    outline-offset: 5px;
+    border-radius: 8px;
+}
+
+details.category-block.version-accordion[open] > summary .category-toggle-indicator i {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    details.category-block.version-accordion .category-toggle-indicator,
+    details.category-block.version-accordion .category-toggle-indicator i {
+        transition: none;
+    }
+}
+
+@media (max-width: 480px) {
+    details.category-block.version-accordion > summary {
+        gap: 0.75rem;
+    }
+
+    details.category-block.version-accordion .category-toggle-indicator {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
