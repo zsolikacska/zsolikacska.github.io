@@ -7,6 +7,13 @@
       "path": "files/Forever/Quality of Life.txt",
       "history": [
         {
+          "version": "v1.0.12",
+          "date": "2026-11-26",
+          "notes": [
+            "Now will ONLY buy Regeants if you are on the Class that uses them - all buying is still off by default"
+          ]
+        },
+        {
           "version": "v1.0.11",
           "date": "2026-11-24",
           "notes": [
