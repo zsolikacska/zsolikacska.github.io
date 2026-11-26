@@ -329,40 +329,58 @@ downloadButtons.forEach(btn => {
 });
 
 
-// --- VERSION MENU SWITCH + encrypted Forever tab ---
+// --- VERSION MENU SWITCH + encrypted Classic / TBC / Forever tabs ---
 const menuButtons = document.querySelectorAll('.content-menu-item');
-const contents = document.querySelectorAll('.category-block');
 const emptyMenuMessage = document.getElementById('emptyMenuMessage');
-const foreverLockPanel = document.getElementById('foreverLockPanel');
-const foreverContentMount = document.getElementById('foreverContentMount');
-const foreverUnlockForm = document.getElementById('foreverUnlockForm');
-const foreverPasswordInput = document.getElementById('foreverPassword');
-const foreverUnlockButton = document.getElementById('foreverUnlockButton');
-const foreverUnlockMessage = document.getElementById('foreverUnlockMessage');
-let foreverUnlocked = false;
+const protectedLockPanel = document.getElementById('foreverLockPanel');
+const protectedContentMount = document.getElementById('foreverContentMount');
+const protectedUnlockForm = document.getElementById('foreverUnlockForm');
+const protectedPasswordInput = document.getElementById('foreverPassword');
+const protectedUnlockButton = document.getElementById('foreverUnlockButton');
+const protectedUnlockMessage = document.getElementById('foreverUnlockMessage');
+const protectedContentTitle = document.getElementById('protectedContentTitle');
+const protectedContentDescription = document.getElementById('protectedContentDescription');
+let selectedProtectedMenu = null;
+let unlockedProtectedMenu = null;
 
-// Forever markup is intentionally absent from index.html. It is stored only as authenticated ciphertext.
-const menuMap = {
-    ClassicMenu: ['ClassicMenuGeneral', 'ClassicMenuRaids'],
-    TBCMenu: ['TBCMenuGeneral', 'TBCMenuRaids'],
-    WotLKMenu: []
+// Each menu has its own encrypted JSON file. All three may use the same password,
+// while each file receives a unique salt and IV during encryption.
+const protectedMenus = {
+    ClassicMenu: {
+        label: 'Classic',
+        file: 'classic.enc.json',
+        contentType: 'classic',
+        requiredSections: ['ClassicMenuGeneral', 'ClassicMenuRaids']
+    },
+    TBCMenu: {
+        label: 'TBC',
+        file: 'tbc.enc.json',
+        contentType: 'tbc',
+        requiredSections: ['TBCMenuGeneral', 'TBCMenuRaids']
+    },
+    ForeverMenu: {
+        label: 'Forever',
+        file: 'forever.enc.json',
+        contentType: 'forever',
+        requiredSections: ['ForeverMenuGeneral', 'ForeverMenuRaids', 'ForeverMenuClassUI']
+    }
 };
 
-function setForeverMessage(message, type = 'error') {
-    if (!foreverUnlockMessage) return;
-    foreverUnlockMessage.textContent = message;
-    foreverUnlockMessage.classList.toggle('success', type === 'success');
+function setProtectedMessage(message, type = 'error') {
+    if (!protectedUnlockMessage) return;
+    protectedUnlockMessage.textContent = message;
+    protectedUnlockMessage.classList.toggle('success', type === 'success');
 }
 
-function clearForeverContent() {
-    foreverUnlocked = false;
-    if (foreverContentMount) {
-        foreverContentMount.replaceChildren();
-        foreverContentMount.hidden = true;
+function clearProtectedContent() {
+    if (protectedContentMount) {
+        protectedContentMount.replaceChildren();
+        protectedContentMount.hidden = true;
     }
-    if (foreverLockPanel) foreverLockPanel.hidden = false;
-    if (foreverPasswordInput) foreverPasswordInput.value = '';
-    setForeverMessage('');
+    if (protectedPasswordInput) protectedPasswordInput.value = '';
+    if (protectedLockPanel) protectedLockPanel.hidden = true;
+    unlockedProtectedMenu = null;
+    setProtectedMessage('');
 }
 
 function base64ToBytes(value) {
@@ -372,12 +390,20 @@ function base64ToBytes(value) {
     return bytes;
 }
 
-async function decryptForeverHtml(password, payload) {
+async function decryptProtectedHtml(password, payload, expectedType) {
     if (!window.crypto || !window.crypto.subtle) {
-        throw new Error('Your browser does not support the required Web Crypto functionality. Try using HTTPS and an up-to-date browser.');
+        throw new Error('Your browser does not support Web Crypto. Use HTTPS and an up-to-date browser.');
     }
-    if (!payload || payload.format !== 'forever-encrypted-v1' || payload.algorithm !== 'AES-GCM-256' || payload.kdf !== 'PBKDF2-SHA-256') {
+    const acceptedFormats = ['wago-encrypted-v1', 'forever-encrypted-v1'];
+    if (!payload || !acceptedFormats.includes(payload.format) || payload.algorithm !== 'AES-GCM-256' || payload.kdf !== 'PBKDF2-SHA-256') {
         throw new Error('Invalid encrypted file format.');
+    }
+    if (payload.contentType && payload.contentType !== expectedType) {
+        throw new Error('This encrypted file belongs to ' + payload.contentType + ', not ' + expectedType + '.');
+    }
+    // The legacy Forever format is accepted only for Forever; the unified format is used for all new outputs.
+    if (payload.format === 'forever-encrypted-v1' && expectedType !== 'forever') {
+        throw new Error('This is a legacy Forever file, not a ' + expectedType + ' file.');
     }
     const iterations = Number(payload.iterations);
     if (!Number.isInteger(iterations) || iterations < 100000 || iterations > 2000000) {
@@ -406,34 +432,35 @@ async function decryptForeverHtml(password, payload) {
     return new TextDecoder('utf-8', { fatal: true }).decode(plaintext);
 }
 
-function enableForeverFileButtons() {
-    // These handlers are also needed for elements created dynamically after successful decryption.
-    foreverContentMount.querySelectorAll('.btn-copy').forEach(button => {
+function enableProtectedFileButtons(mount) {
+    mount.querySelectorAll('.btn-copy').forEach(button => {
+        if (button.dataset.protectedHandler === 'copy') return;
+        button.dataset.protectedHandler = 'copy';
         button.addEventListener('click', async event => {
             event.preventDefault();
             const fileUrl = button.dataset.file;
             try {
-                const response = await fetch(fileUrl);
+                const response = await fetch(new URL(fileUrl, document.baseURI));
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 const text = await response.text();
                 await navigator.clipboard.writeText(text);
                 button.innerHTML = 'Copied! ✅';
-                setTimeout(() => {
-                    button.innerHTML = '<i class="fa-solid fa-copy"></i> Copy WA';
-                }, 1500);
+                setTimeout(() => { button.innerHTML = '<i class="fa-solid fa-copy"></i> Copy WA'; }, 1500);
             } catch (error) {
-                console.error('Forever Copy WA error:', error);
-                alert('Failed to copy the file contents. Check the file and your browser\'s clipboard permissions.');
+                console.error('Protected Copy WA error:', error);
+                alert('Failed to copy the file contents. Check the file and clipboard permissions.');
             }
         });
     });
 
-    foreverContentMount.querySelectorAll('.btn-download').forEach(button => {
+    mount.querySelectorAll('.btn-download').forEach(button => {
+        if (button.dataset.protectedHandler === 'download') return;
+        button.dataset.protectedHandler = 'download';
         button.addEventListener('click', async event => {
             event.preventDefault();
             const fileUrl = button.getAttribute('href');
             try {
-                const response = await fetch(fileUrl);
+                const response = await fetch(new URL(fileUrl, document.baseURI));
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 const blob = await response.blob();
                 const objectUrl = URL.createObjectURL(blob);
@@ -445,63 +472,64 @@ function enableForeverFileButtons() {
                 anchor.remove();
                 setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
             } catch (error) {
-                console.error('Forever download error:', error);
+                console.error('Protected download error:', error);
                 alert('Failed to download the file. Check your connection and the file path.');
             }
         });
     });
 }
 
-async function unlockForever() {
-    const password = foreverPasswordInput.value;
+async function unlockSelectedContent() {
+    const config = protectedMenus[selectedProtectedMenu];
+    if (!config) return;
+    const requestedMenu = selectedProtectedMenu;
+    const password = protectedPasswordInput.value;
     if (!password) {
-        setForeverMessage('Please enter the password.');
+        setProtectedMessage('Please enter the password.');
         return;
     }
 
-    foreverUnlockButton.disabled = true;
-    foreverUnlockButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Decrypting…';
-    setForeverMessage('');
+    protectedUnlockButton.disabled = true;
+    protectedUnlockButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Decrypting…';
+    setProtectedMessage('');
     try {
-        const response = await fetch(new URL('forever.enc.json', document.baseURI).toString(), { cache: 'no-store' });
+        const response = await fetch(new URL(config.file, document.baseURI).toString(), { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(response.status === 404
-                ? 'forever.enc.json not found. Please upload it to the root directory of your GitHub repository.'
+                ? config.file + ' not found. Generate it with the local Encrypt page and upload it to the repository root.'
                 : 'Failed to load the encrypted file (HTTP ' + response.status + ').');
         }
         const payload = await response.json();
-        const decryptedHtml = await decryptForeverHtml(password, payload);
-        const requiredForeverSections = ['ForeverMenuGeneral', 'ForeverMenuRaids', 'ForeverMenuClassUI'];
-        const missingForeverSections = requiredForeverSections.filter(id => !decryptedHtml.includes(`id=\"${id}\"`));
-        if (missingForeverSections.length) {
-            throw new Error('Missing section(s) in the encrypted Forever content: ' + missingForeverSections.join(', ') + '. Please check your forever-content.html file.');
+        const decryptedHtml = await decryptProtectedHtml(password, payload, config.contentType);
+        const parsed = new DOMParser().parseFromString(decryptedHtml, 'text/html');
+        const missing = config.requiredSections.filter(id => !parsed.getElementById(id));
+        if (missing.length) {
+            throw new Error('Missing section(s) in ' + config.label + ' content: ' + missing.join(', ') + '. Check the matching *-content.html source.');
         }
 
-        foreverContentMount.innerHTML = decryptedHtml;
-        enableForeverFileButtons();
-        foreverUnlocked = true;
-        foreverLockPanel.hidden = true;
-        foreverContentMount.hidden = false;
-        setForeverMessage('Successfully unlocked.', 'success');
-
-        // Remove the password from the field after use.
-        foreverPasswordInput.value = '';
+        // A click on another tab while decryption is in progress must not mount the previous tab.
+        if (selectedProtectedMenu !== requestedMenu) return;
+        protectedContentMount.innerHTML = decryptedHtml;
+        enableProtectedFileButtons(protectedContentMount);
+        unlockedProtectedMenu = selectedProtectedMenu;
+        protectedLockPanel.hidden = true;
+        protectedContentMount.hidden = false;
+        setProtectedMessage('Successfully unlocked.', 'success');
+        protectedPasswordInput.value = '';
     } catch (error) {
-        console.error('Forever decryption failed:', error);
+        console.error(config.label + ' decryption failed:', error);
         const likelyWrongPassword = error && (error.name === 'OperationError' || error.name === 'DataError');
-        setForeverMessage(likelyWrongPassword ? 'Incorrect password or corrupted encrypted file.' : (error.message || 'The Forever content could not be opened.'));
+        setProtectedMessage(likelyWrongPassword ? 'Incorrect password or corrupted encrypted file.' : (error.message || 'The protected content could not be opened.'));
     } finally {
-        foreverUnlockButton.disabled = false;
-        foreverUnlockButton.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Unlock';
+        protectedUnlockButton.disabled = false;
+        protectedUnlockButton.innerHTML = '<i class="fas fa-unlock-alt" aria-hidden="true"></i> Unlock';
     }
 }
 
 function showContent(menuId) {
-    // Hide the static version blocks.
-    contents.forEach(div => { div.style.display = 'none'; });
-
-    // Switching away from Forever removes the decrypted fragment from the DOM.
-    if (menuId !== 'ForeverMenu') clearForeverContent();
+    const config = protectedMenus[menuId];
+    if (selectedProtectedMenu !== menuId) clearProtectedContent();
+    selectedProtectedMenu = config ? menuId : null;
 
     menuButtons.forEach(button => {
         const active = button.dataset.menu === menuId;
@@ -509,41 +537,34 @@ function showContent(menuId) {
         button.setAttribute('aria-selected', active ? 'true' : 'false');
     });
 
-    if (menuId === 'ForeverMenu') {
+    if (config) {
         if (emptyMenuMessage) emptyMenuMessage.hidden = true;
-        if (foreverContentMount) foreverContentMount.hidden = !foreverUnlocked;
-        if (foreverLockPanel) foreverLockPanel.hidden = foreverUnlocked;
-        if (!foreverUnlocked && foreverPasswordInput) setTimeout(() => foreverPasswordInput.focus(), 0);
+        protectedContentTitle.textContent = config.label + ' — Password-Protected Content';
+        protectedContentDescription.textContent = 'Enter the password to access the ' + config.label + ' collection.';
+        const alreadyUnlocked = unlockedProtectedMenu === menuId;
+        protectedLockPanel.hidden = alreadyUnlocked;
+        protectedContentMount.hidden = !alreadyUnlocked;
+        if (!alreadyUnlocked) setTimeout(() => protectedPasswordInput.focus(), 0);
         return;
     }
 
-    if (foreverLockPanel) foreverLockPanel.hidden = true;
-    if (foreverContentMount) foreverContentMount.hidden = true;
-
-    const selectedSections = menuMap[menuId] || [];
-    let hasContent = false;
-    selectedSections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.style.display = 'block';
-            hasContent = true;
-        }
-    });
-    if (emptyMenuMessage) emptyMenuMessage.hidden = hasContent;
+    if (protectedLockPanel) protectedLockPanel.hidden = true;
+    if (protectedContentMount) protectedContentMount.hidden = true;
+    if (emptyMenuMessage) emptyMenuMessage.hidden = false;
 }
 
 menuButtons.forEach(button => {
     button.addEventListener('click', () => showContent(button.dataset.menu));
 });
 
-if (foreverUnlockForm) {
-    foreverUnlockForm.addEventListener('submit', event => {
+if (protectedUnlockForm) {
+    protectedUnlockForm.addEventListener('submit', event => {
         event.preventDefault();
-        unlockForever();
+        unlockSelectedContent();
     });
 }
 
-// Keep the site's existing startup behaviour: Forever is the selected tab, but content stays encrypted until unlocked.
+// Keep Forever as the startup tab, as before. All content is now encrypted at rest.
 showContent('ForeverMenu');
 
 
