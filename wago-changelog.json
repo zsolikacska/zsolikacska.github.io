@@ -21,6 +21,90 @@
           ]
         }
       ]
+    },
+    "v2|forever|files/forever/clickable consumes.txt": {
+      "name": "Clickable Consumes",
+      "group": "Forever",
+      "path": "files/Forever/Clickable Consumes.txt",
+      "history": [
+        {
+          "version": "v1.1.0",
+          "date": "2026-11-28",
+          "notes": [
+            "Important backend fix"
+          ]
+        }
+      ]
+    },
+    "v2|forever|files/forever/threat on nameplates.txt": {
+      "name": "Threat On Nameplates",
+      "group": "Forever",
+      "path": "files/Forever/Threat on Nameplates.txt",
+      "history": [
+        {
+          "version": "v1.0.4",
+          "date": "2026-11-28",
+          "notes": [
+            "Performance update for latest ForeverAuras version"
+          ]
+        }
+      ]
+    },
+    "v2|forever|files/forever/classes/hunter.txt": {
+      "name": "Hunter",
+      "group": "Forever",
+      "path": "files/Forever/classes/hunter.txt",
+      "history": [
+        {
+          "version": "v1.1.3",
+          "date": "2026-11-28",
+          "notes": [
+            "BUFFS: All buffs have now been separated, by type. Additionally, defensive oriented buffs now appear in defensives, and only offensive/class appear above the Main UI HUD.",
+            "Added all Enchant Procs",
+            "Added all Item Procs currently known to Forever, including Set Bonuses",
+            "Added all Trinket Procs/Use",
+            "Added all Consumables",
+            "Defensive Externals has been increased and now adds missing Spells",
+            "The CDM Helper now loads even when on Flight Paths; to prevent double Resource Bar appearing when using EUI and reloading on a Flight Path",
+            "HoTs are now tracked, and are it's own Aura. If you prefer not to see HoTs/misc Heal effects on you, then you can set the aura to Load: Never (search HoTs).",
+            "The Main / CD Bar have been re-arranged to make more sense. Racials are now also always centered, and split correctly between Racial #1 & Racial #2 (1 is offensive, 2 is defensive)",
+            "Removed Mongoose Bite from the Main Bar; it now has an associated Pop-up Icon, along with Texture. By default, both are enabled. Choose in the Custom Options your preference.",
+            "Fixed an issue with Summon Hawk Timer that would miss out on updating the Hawk correctly if used at a certain timing.",
+            "The Foods that pop-up when clicked for Feed Pet; now show their names and level labels",
+            "The Pet EXP Bar will hide once the Pet is now max level",
+            "Added Ticks to the Cast Bar when casting Volley",
+            "Aspect Reminder no longer shows when Mounted",
+            "IMPROVED TRACKING HELPER Has been removed. However, just below this post, you'll find a standalone, which now works in Instances."
+          ]
+        }
+      ]
+    },
+    "v2|forever|files/forever/classes/mage.txt": {
+      "name": "Mage",
+      "group": "Forever",
+      "path": "files/Forever/classes/mage.txt",
+      "history": [
+        {
+          "version": "v1.1.0",
+          "date": "2026-11-28",
+          "notes": [
+            "BUFFS: All buffs have now been separated, by type. Additionally, defensive oriented buffs now appear in defensives, and only offensive/class appear above the Main UI HUD.",
+            "Added all Enchant Procs",
+            "Added all Item Procs currently known to Forever, including Set Bonuses",
+            "Added all Trinket Procs/Use",
+            "Added all Consumables",
+            "Defensive Externals has been increased and now adds missing Spells",
+            "The CDM Helper & EUI Helper now loads even when on Flight Paths; to prevent double Resource Bar appearing when using EUI and reloading on a Flight Path",
+            "HoTs are now tracked, and are it's own Aura. If you prefer not to see HoTs/misc Heal effects on you, then you can set the aura to Load: Never (search HoTs).",
+            "Added a Proc Texture for the Revelation Enchant",
+            "Added an Arcane Blast Bar. This Bar shows a tick when you can cast Arcane Wrath and it would land in time to benefit from the stacks. The bar also goes green towards its end, when it's safe to cast an Arcane Blast and the stacks will be reset for that Cast.",
+            "Fix the Study Reminder, and it's clickable Component updating Dynamically in the Stormwind Library",
+            "Added Ticks to the Cast Bar for Blizzard",
+            "Added Ticks to the Cast Bar for Arcane Missiles",
+            "Added ICD for the Insight Enchant Proc"
+          ]
+        }
+      ]
     }
   },
   "identity": "game-path-v1"
